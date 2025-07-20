@@ -1,4 +1,4 @@
-baseurl = "https://sugeng-sulistiyawan.github.io/"
+baseurl = "https://wanforge.github.io/"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true

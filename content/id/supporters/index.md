@@ -9,7 +9,7 @@ images: []
 
 ## Thanks! 🙌
 
-Saya sangat berterima kasih kepada semua orang dan perusahaan luar biasa yang mendukung pekerjaan open source saya di [GitHub Sponsors](https://github.com/sponsors/sugeng-sulistiyawan).
+Saya sangat berterima kasih kepada semua orang dan perusahaan luar biasa yang mendukung pekerjaan open source saya di [GitHub Sponsors](https://github.com/sponsors/wanforge).
 
 ---
 

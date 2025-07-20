@@ -13,7 +13,7 @@ weight: 25
 toc: true
 ---
 
-> [https://github.com/sugeng-sulistiyawan/yii2-aws-s3](https://github.com/sugeng-sulistiyawan/yii2-aws-s3)
+> [https://github.com/wanforge/yii2-aws-s3](https://github.com/wanforge/yii2-aws-s3)
 
 ---
 

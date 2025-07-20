@@ -13,7 +13,7 @@ weight: 15
 toc: true
 ---
 
-> [https://github.com/sugeng-sulistiyawan/yii2-basic-deploy](https://github.com/sugeng-sulistiyawan/yii2-basic-deploy)
+> [https://github.com/wanforge/yii2-basic-deploy](https://github.com/wanforge/yii2-basic-deploy)
 
 ---
 
@@ -45,7 +45,7 @@ jobs:
               run: composer install --no-progress --prefer-dist --optimize-autoloader --no-interaction
 
             - name: Deploy to Server
-              uses: sugeng-sulistiyawan/yii2-basic-deploy@main
+              uses: wanforge/yii2-basic-deploy@main
               with:
                 user: ${{ vars.USER }}
                 host: ${{ vars.HOST }}

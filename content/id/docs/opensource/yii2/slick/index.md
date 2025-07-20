@@ -13,7 +13,7 @@ weight: 40
 toc: true
 ---
 
-> [https://github.com/sugeng-sulistiyawan/yii2-slick](https://github.com/sugeng-sulistiyawan/yii2-slick)
+> [https://github.com/wanforge/yii2-slick](https://github.com/wanforge/yii2-slick)
 
 ---
 

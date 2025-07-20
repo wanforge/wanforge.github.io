@@ -218,9 +218,9 @@ Modal Full Screen Bootstrap 3
 
 #### Demo & Preview:
 
-<p class="codepen" data-height="500" data-theme-id="dark" data-default-tab="result" data-slug-hash="WNajjZg" data-user="sugeng-sulistiyawan" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sugeng-sulistiyawan/pen/WNajjZg">
-  Bootstrap 3 Modal Full Screen</a> by Sugeng Sulistiyawan (<a href="https://codepen.io/sugeng-sulistiyawan">@sugeng-sulistiyawan</a>)
+<p class="codepen" data-height="500" data-theme-id="dark" data-default-tab="result" data-slug-hash="WNajjZg" data-user="wanforge" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/wanforge/pen/WNajjZg">
+  Bootstrap 3 Modal Full Screen</a> by Sugeng Sulistiyawan (<a href="https://codepen.io/wanforge">@wanforge</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>

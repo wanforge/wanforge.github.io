@@ -9,7 +9,7 @@ images: []
 
 ## Thanks! 🙌
 
-I'm truly grateful to all the wonderful humans and companies supporting my open source work on [GitHub Sponsors](https://github.com/sponsors/sugeng-sulistiyawan).
+I'm truly grateful to all the wonderful humans and companies supporting my open source work on [GitHub Sponsors](https://github.com/sponsors/wanforge).
 
 ---
 

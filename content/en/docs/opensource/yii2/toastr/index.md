@@ -13,7 +13,7 @@ weight: 10
 toc: true
 ---
 
-> [https://github.com/sugeng-sulistiyawan/yii2-toastr](https://github.com/sugeng-sulistiyawan/yii2-toastr)
+> [https://github.com/wanforge/yii2-toastr](https://github.com/wanforge/yii2-toastr)
 
 ---
 

@@ -18,7 +18,7 @@
   gtag('js', new Date());
 
   gtag('config', 'G-J0HVZBWTNT', {
-    cookie_domain: 'sugengsulistiyawan.my.id',
+    cookie_domain: 'wanforge.github.io',
     cookie_flags: 'SameSite=None;Secure',
   });
 </script>

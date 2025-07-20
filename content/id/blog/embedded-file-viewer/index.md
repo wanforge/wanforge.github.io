@@ -101,7 +101,7 @@ Google Drive viewer helps you preview over 16 different file types, listed below
 
 ### Example
 
-`https://docs.google.com/a/sugeng-sulistiyawan.github.io/file/d/FILE_ID_UNIQUE/edit`
+`https://docs.google.com/a/wanforge.github.io/file/d/FILE_ID_UNIQUE/edit`
 
 ## Google Drive
 
@@ -133,10 +133,10 @@ To view Google Drive docs from fileviewer links, use the file ID as the `srcid` 
 
 The file ID for your PDF (one that is already in Google Drive) can be found in the PDFs web address. When you open a PDF, it's the garbage-looking piece of the URL (it will be between forward-slashes, "/").
 
-`https://docs.google.com/a/sugeng-sulistiyawan.github.io/file/d/FILE_ID_UNIQUE/edit`
+`https://docs.google.com/a/wanforge.github.io/file/d/FILE_ID_UNIQUE/edit`
 
 * In this case it's the `FILE_ID_UNIQUE` => [ID]
-* In this case it's the `sugeng-sulistiyawan.github.io` => [DOMAIN]
+* In this case it's the `wanforge.github.io` => [DOMAIN]
 
 Source: `https://docs.google.com/fileview?id=FILE_ID_UNIQUE&hl=en&pid=explorer&efh=false&a=v&chrome=false&embedded=true`
 

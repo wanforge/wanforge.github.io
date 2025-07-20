@@ -13,7 +13,7 @@ weight: 30
 toc: true
 ---
 
-> [https://github.com/sugeng-sulistiyawan/yii2-barcode-generator](https://github.com/sugeng-sulistiyawan/yii2-barcode-generator)
+> [https://github.com/wanforge/yii2-barcode-generator](https://github.com/wanforge/yii2-barcode-generator)
 
 ---
 

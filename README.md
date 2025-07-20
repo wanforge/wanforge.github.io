@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://sugeng-sulistiyawan.github.io/">
+  <a href="https://wanforge.github.io/">
     <img alt="Sugeng Sulistiyawan" src="static/logo.png" width="80">
   </a>
 </p>
 
 <h1 align="center">
   <strong>Sugeng Sulistiyawan</strong><br>
-  <img src="https://img.shields.io/website?down_message=Offline&label=sugeng-sulistiyawan.github.io&up_message=Online&url=https%3A%2F%2Fsugeng-sulistiyawan.github.io">
+  <img src="https://img.shields.io/website?down_message=Offline&label=wanforge.github.io&up_message=Online&url=https%3A%2F%2Fwanforge.github.io">
 </h1>
 
 ## Requirements
@@ -44,4 +44,3 @@ Doks comes with [commands](https://getdoks.org/docs/prologue/commands/) for comm
 - [Netlify](https://docs.netlify.com/)
 - [Hugo](https://gohugo.io/documentation/)
 - [Doks](https://getdoks.org/)
-
