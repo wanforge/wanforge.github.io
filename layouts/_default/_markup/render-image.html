@@ -1,0 +1,9 @@
+{{- /* Simple image renderer that doesn't use deprecated .Err */ -}}
+{{- $src := .Destination | safeURL -}}
+{{- $alt := .Text | safeHTML -}}
+{{- $title := .Title | safeHTML -}}
+
+<img src="{{ $src }}"
+     {{- with $alt }} alt="{{ . }}"{{ end }}
+     {{- with $title }} title="{{ . }}"{{ end }}
+     {{- range .Attributes }} {{ .Name }}="{{ .Value | safeHTMLAttr }}"{{ end }}>
