@@ -5,8 +5,10 @@ disableHugoGeneratorInject = true
 enableEmoji = true
 enableGitInfo = true
 enableRobotsTXT = true
-paginate = 7
 rssLimit = 10
+
+[pagination]
+pagerSize = 7
 
 # Multilingual
 defaultContentLanguage = "en"
@@ -68,8 +70,8 @@ rel  = "sitemap"
 [minify.tdewolff.html]
   keepWhitespace = false
 
-# [minify]
-#   disableJS = true
+[minify]
+  disableJS = true
 
 [related]
   threshold = 80
