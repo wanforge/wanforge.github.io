@@ -15,8 +15,8 @@
 
   <div class="row justify-content-center align-items-center gap-3 mt-3 mb-4">
     <div class="col-lg-12 text-center">
-      💬 Ask me about anything <a href="https://github.com/wanforge/wanforge/issues"
-        target="_blank" rel="noopener noreferrer">here</a>
+      💬 Ask me about anything <a href="https://github.com/wanforge/wanforge/issues" target="_blank"
+        rel="noopener noreferrer">here</a>
 
       <div class="mt-2">
         <ul class="nav flex-row justify-content-center">
@@ -64,18 +64,27 @@
         <div class="bg-dots" style="height: 15rem;"></div>
       </div>
 
-      <div class="row justify-content-center align-items-center gap-3">
+      <div class="text-center mb-2">
+        <hr>
+        <h3 class="mt-5"><strong>My GitHub Stats</strong></h3>
+        <p class="lead">Here are my main GitHub statistics, automatically updated in real time.</p>
+      </div>
 
+      <div class="row justify-content-center align-items-center gap-4 mb-4">
         {{ range $main := index $.Site.Data "stats" "main" }}
-
-        <div class="{{ $main.col }}">
-          <img src="{{ $main.stat }}&hide_border=true&theme=buefy&bg_color=00000000"
-            class="{{ $main.class }} show-light hide-dark" />
-          <img src="{{ $main.stat }}&hide_border=true&theme=dark&bg_color=00000000"
-            class="{{ $main.class }} show-dark hide-light" />
+        <div class="{{ $main.col }} d-flex flex-column align-items-center">
+          <div class="mb-2">
+            <img src="{{ $main.stat }}&hide_border=true&theme=buefy&bg_color=00000000"
+              class="{{ $main.class }} show-light hide-dark rounded shadow-sm" alt="Stat {{ $main.title }}" />
+            <img src="{{ $main.stat }}&hide_border=true&theme=dark&bg_color=00000000"
+              class="{{ $main.class }} show-dark hide-light rounded shadow-sm" alt="Stat {{ $main.title }}" />
+          </div>
+          {{ if $main.title }}
+          <span class="fw-bold small text-muted">{{ $main.title }}</span>
+          {{ end }}
         </div>
-
         {{ end }}
+      </div>
 
       </div>
 
