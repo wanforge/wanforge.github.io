@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugeng Sulistiyawan - Curriculum Vitae</title>
+    <style>
+      @page {
+        margin: 20mm;
+        size: A4;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        line-height: 1.4;
+        color: #2c3e50;
+        font-size: 11pt;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #34495e;
+        padding-bottom: 15px;
+      }
+
+      .header h1 {
+        font-size: 24pt;
+        color: #2c3e50;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .header h2 {
+        font-size: 14pt;
+        color: #7f8c8d;
+        margin-bottom: 8px;
+        font-style: italic;
+      }
+
+      .contact-info {
+        font-size: 10pt;
+        color: #34495e;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        font-size: 14pt;
+        color: #2c3e50;
+        border-bottom: 1px solid #bdc3c7;
+        padding-bottom: 3px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .experience-item {
+        margin-bottom: 15px;
+        page-break-inside: avoid;
+      }
+
+      .job-title {
+        font-size: 12pt;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .company {
+        font-size: 11pt;
+        color: #3498db;
+        font-weight: 600;
+      }
+
+      .duration {
+        font-size: 10pt;
+        color: #7f8c8d;
+        font-style: italic;
+      }
+
+      .technologies {
+        font-size: 9pt;
+        color: #8e44ad;
+        margin: 3px 0;
+        font-weight: 500;
+      }
+
+      .achievements {
+        margin-top: 5px;
+      }
+
+      .achievements ul {
+        margin-left: 15px;
+      }
+
+      .achievements li {
+        margin-bottom: 2px;
+        font-size: 10pt;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .skill-category {
+        margin-bottom: 10px;
+      }
+
+      .skill-category h4 {
+        font-size: 11pt;
+        color: #2c3e50;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .skill-list {
+        font-size: 9pt;
+        line-height: 1.3;
+        color: #34495e;
+      }
+
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 15px 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #bdc3c7;
+        border-radius: 3px;
+      }
+
+      .stat-number {
+        font-size: 16pt;
+        font-weight: bold;
+        color: #3498db;
+      }
+
+      .stat-label {
+        font-size: 9pt;
+        color: #7f8c8d;
+      }
+
+      .summary {
+        text-align: justify;
+        font-size: 10pt;
+        line-height: 1.4;
+        margin-bottom: 15px;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 9pt;
+        color: #7f8c8d;
+        border-top: 1px solid #bdc3c7;
+        padding-top: 10px;
+      }
+
+      @media print {
+        body {
+          font-size: 10pt;
+        }
+
+        .header h1 {
+          font-size: 20pt;
+        }
+
+        .header h2 {
+          font-size: 12pt;
+        }
+
+        .section-title {
+          font-size: 12pt;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>SUGENG SULISTIYAWAN</h1>
+      <h2>Software Engineer & Full Stack Developer</h2>
+      <div class="contact-info">
+        <p>Trenggalek, East Java, Indonesia | sugeng.sulistiyawan@gmail.com</p>
+        <p>wanforge.github.io | linkedin.com/in/sugengsulistiyawan</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Professional Summary</h3>
+      <p class="summary">
+        Experienced Software Engineer and Full Stack Developer with over 5 years of expertise in web application
+        development, IoT solutions, DevOps, and creative design. Successfully delivered 150+ web applications, 50+ IoT
+        solutions, and 200+ logo designs across healthcare, business, and education sectors. Proven track record in
+        building innovative technology solutions, leading cross-functional teams, and contributing to open source
+        projects.
+      </p>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Key Achievements</h3>
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Web Applications</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">IoT Solutions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Logo Designs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Core Technical Skills</h3>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4>Backend Development</h4>
+          <div class="skill-list">PHP (Yii2, Laravel, CodeIgniter), Node.js, Express.js, RESTful & GraphQL APIs, MySQL,
+            PostgreSQL, Redis, MongoDB, Microservices</div>
+        </div>
+        <div class="skill-category">
+          <h4>Frontend Development</h4>
+          <div class="skill-list">Vue.js, React, Angular, JavaScript, TypeScript, Bootstrap, Tailwind CSS, SASS, PWA,
+            SPA</div>
+        </div>
+        <div class="skill-category">
+          <h4>Mobile Development</h4>
+          <div class="skill-list">Flutter, React Native, Android Studio, Mobile UI/UX, App Store Deployment</div>
+        </div>
+        <div class="skill-category">
+          <h4>DevOps & Cloud</h4>
+          <div class="skill-list">AWS (EC2, S3, RDS), Google Cloud, Docker, Kubernetes, CI/CD, Ubuntu, Linux, Mikrotik,
+            DNS</div>
+        </div>
+        <div class="skill-category">
+          <h4>IoT & Hardware</h4>
+          <div class="skill-list">Arduino, ESP32/ESP8266, C++, Raspberry Pi, Sensor Integration, Automation</div>
+        </div>
+        <div class="skill-category">
+          <h4>Design & Creative</h4>
+          <div class="skill-list">UI/UX Design, Figma, Adobe Illustrator, CorelDraw, Logo Design, Branding</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Professional Experience</h3>
+
+      <div class="experience-item">
+        <div class="job-title">Full-stack Developer, DevOps & Network Operator</div>
+        <div class="company">RSUD dr. Soedomo Trenggalek</div>
+        <div class="duration">June 2024 – Present</div>
+        <div class="technologies">PHP, Yii Framework, Laravel, AngularJS, Node.js, Ubuntu Server, MySQL, PostgreSQL,
+          Mikrotik</div>
+        <div class="achievements">
+          <ul>
+            <li>Developing healthcare web applications with modern frameworks</li>
+            <li>Managing server infrastructure and network operations</li>
+            <li>Database optimization and performance tuning</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-title">Freelance Developer & Designer</div>
+        <div class="company">Independent Contractor</div>
+        <div class="duration">2015 – Present</div>
+        <div class="technologies">PHP, Laravel, Yii2, Node.js, Vue.js, React, Angular, Flutter, AWS, Google Cloud,
+          Docker, IoT</div>
+        <div class="achievements">
+          <ul>
+            <li>Delivered 150+ custom web applications for healthcare, business, and education</li>
+            <li>Developed 50+ IoT solutions including smart sensors and automation systems</li>
+            <li>Created 200+ logo and branding designs for companies and organizations</li>
+            <li>Implemented scalable cloud infrastructure and DevOps pipelines</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-title">Full-stack Developer & DevOps</div>
+        <div class="company">Matador Lectro, Surakarta</div>
+        <div class="duration">August 2023 – May 2024</div>
+        <div class="technologies">PHP, Yii Framework, Node.js, React Native, Flutter, AWS, EC2, S3, RDS</div>
+        <div class="achievements">
+          <ul>
+            <li>Developed comprehensive web and mobile applications</li>
+            <li>Managed cloud infrastructure for optimal performance</li>
+            <li>Successfully published applications to Google Play Store</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-title">Backend Developer & DevOps</div>
+        <div class="company">Matador Lectro, Surakarta</div>
+        <div class="duration">August 2021 – 2023</div>
+        <div class="technologies">PHP, Yii Framework, Node.js, AWS, MySQL, PostgreSQL, Cloud VPS</div>
+        <div class="achievements">
+          <ul>
+            <li>Implemented software changes based on design specifications</li>
+            <li>Created comprehensive technical and user documentation</li>
+            <li>Managed cloud infrastructure and deployment processes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-title">CEO & Developer</div>
+        <div class="company">Die Coding Technology, Surakarta</div>
+        <div class="duration">2017 – Present</div>
+        <div class="technologies">Full-stack development, Project management, Client relations</div>
+        <div class="achievements">
+          <ul>
+            <li>Led company in delivering innovative software solutions</li>
+            <li>Managed end-to-end software development lifecycle</li>
+            <li>Oversaw project delivery and team coordination</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-title">Software Developer</div>
+        <div class="company">UPT TIK Universitas Sebelas Maret, Surakarta</div>
+        <div class="duration">March 2017 – March 2019</div>
+        <div class="technologies">PHP, Yii Framework</div>
+        <div class="achievements">
+          <ul>
+            <li>Developed comprehensive university information systems</li>
+            <li>Maintained and upgraded existing applications</li>
+            <li>Provided technical support for university IT infrastructure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Education & Languages</h3>
+      <p><strong>Bachelor of Information Systems</strong> - Mathematics & Information Systems Expertise</p>
+      <p><strong>Languages:</strong> Indonesian (Native), English (Professional Working Proficiency)</p>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Professional Values</h3>
+      <p>Collaboration • Results-Driven • Continuous Learning • Innovation • Problem Solving • Mentorship</p>
+    </div>
+
+    <div class="footer">
+      <p>Last updated: January 2025 | Available for freelance projects and consulting opportunities</p>
+    </div>
+  </body>
+
+</html>

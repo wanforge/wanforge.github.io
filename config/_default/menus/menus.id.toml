@@ -10,8 +10,21 @@
 
 [[main]]
   name = "CV"
-  url = "/sugeng_sulistiyawan_resume.pdf"
+  url = "/cv/"
   weight = 100
+  identifier = "cv"
+
+[[main]]
+  name = "CV"
+  url = "/cv/"
+  weight = 101
+  parent = "cv"
+
+[[main]]
+  name = "Unduh PDF"
+  url = "/sugeng_sulistiyawan_resume.pdf"
+  weight = 101
+  parent = "cv"
 
 [[main]]
   name = "Blog"

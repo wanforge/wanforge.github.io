@@ -28,7 +28,8 @@
     "lint:scripts": "eslint assets/js",
     "lint:styles": "stylelint \"assets/scss/**/*.scss\" --cache",
     "lint:markdown": "markdownlint-cli2 \"*.md\" \"content/**/*.md\" \"!node_modules\" \"!CHANGELOG.md\" \"!README.md\"",
-    "test": "npm run -s lint"
+    "test": "npm run -s lint",
+    "generate-cv-pdf": "node scripts/generate-cv-pdf.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.24",
@@ -54,6 +55,7 @@
     "node-fetch": "^3.3",
     "postcss": "^8.4",
     "postcss-cli": "^11.0",
+    "puppeteer": "^24.15.0",
     "purgecss-whitelister": "^2.4",
     "shx": "^0.4.0",
     "stylelint": "^16.22",
