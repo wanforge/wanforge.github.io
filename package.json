@@ -58,7 +58,7 @@
     "puppeteer": "^24.15.0",
     "purgecss-whitelister": "^2.4",
     "shx": "^0.4.0",
-    "stylelint": "^16.22",
+    "stylelint": "^16.23",
     "stylelint-config-standard-scss": "^15.0"
   },
   "otherDependencies": {
