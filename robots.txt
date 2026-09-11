@@ -1,0 +1,21 @@
+# Global crawling rules / Aturan perayapan global
+User-agent: *
+Allow: /
+
+# Do not crawl CMS/admin paths / Jangan rayapi path CMS/admin
+Disallow: /decapcms/
+
+# Avoid crawling duplicate tracking-parameter URLs
+# Hindari perayapan URL duplikat dengan parameter tracking
+Disallow: /*?*utm_
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+
+# Sitemaps (contain both Indonesian and English routes)
+Sitemap: https://wanforge.asia/sitemap-index.xml
+Sitemap: https://wanforge.asia/sitemap-index.xml
+Sitemap: https://wanforge.asia/sitemap-rss.xml
+
+# RSS feeds
+# Indonesian: https://wanforge.asia/rss.xml
+# English: https://wanforge.asia/en/rss.xml

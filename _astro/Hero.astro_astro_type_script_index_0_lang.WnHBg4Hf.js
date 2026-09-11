@@ -1,0 +1,1 @@
+import{a,s as r}from"./stagger.DLpM7VIR.js";const t=document.querySelectorAll("[data-hero]"),o=window.matchMedia("(prefers-reduced-motion: reduce)").matches;t.length&&!o&&(t.forEach(e=>{e.style.opacity="0",e.style.transform="translateY(16px)"}),requestAnimationFrame(()=>{a(t,{opacity:[0,1],translateY:[16,0],duration:700,delay:r(100,{start:50}),ease:"out(3)"})}));
