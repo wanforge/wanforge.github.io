@@ -48,7 +48,7 @@ function l(){const s=document.getElementById("terminal-screen"),r=document.getEl
         </div>
       `,stack:`
         <div class="space-y-1 text-zinc-300 text-[11px]">
-          <div><strong class="text-zinc-100">PRODUCTION CORE:</strong> Next.js 15, TypeScript, Astro 5, Bun, Tailwind CSS v4 (shadcn)</div>
+          <div><strong class="text-zinc-100">PRODUCTION CORE:</strong> Next.js 15, TypeScript, Astro 5, Bun, Tailwind CSS v4 (RizzUI)</div>
           <div><strong class="text-zinc-100">DATA & CLOUD:</strong> PostgreSQL, Docker, Nginx, Cloudflare Edge, GitHub Pages, Linux VPS</div>
           <div><strong class="text-zinc-100">PROTOCOLS:</strong> HL7 FHIR R4 (Kemenkes SatuSehat), BPJS vClaim TrustMark, REST, MCP</div>
           <div><strong class="text-zinc-100">AI AGENTS:</strong> Model Context Protocol (MCP), 9Router Gateway, Claude Code workflows</div>
