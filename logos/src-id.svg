@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550">
+  <g transform="matrix(1, 0, 0, 1, 25, 25)">
+    <g>
+      <rect width="250" height="250" style="stroke: rgb(255, 255, 255); paint-order: fill; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-width: 50px;" x="250"/>
+      <rect width="250" height="250" style="stroke: rgb(255, 255, 255); paint-order: fill; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-width: 50px;" y="250"/>
+      <line style="stroke: rgb(255, 255, 255); paint-order: fill; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-width: 50px;" x1="250" y1="250" x2="500" y2="500"/>
+    </g>
+  </g>
+</svg>
