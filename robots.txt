@@ -5,6 +5,9 @@ Allow: /
 # Do not crawl CMS/admin paths / Jangan rayapi path CMS/admin
 Disallow: /decapcms/
 
+# Note: /amp/ is intentionally not disallowed to allow crawlers to process noindex and canonical tags.
+
+
 # Avoid crawling duplicate tracking-parameter URLs
 # Hindari perayapan URL duplikat dengan parameter tracking
 Disallow: /*?*utm_
