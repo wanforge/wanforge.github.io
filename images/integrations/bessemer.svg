@@ -1,0 +1,5 @@
+<!-- Bessemer Venture Partners - BVP Logo -->
+<svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+  <text x="10" y="28" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="currentColor" letter-spacing="-0.5">BVP</text>
+  <circle cx="95" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+</svg>
