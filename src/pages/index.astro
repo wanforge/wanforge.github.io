@@ -1,58 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getAssetPath } from '../config/paths';
-import {
-  Hero,
-  LogoCloudSection,
-  FeaturesOverview,
-  HowItWorks,
-  StatsSection,
-  IntegrationsSection,
-  TestimonialsSection,
-  PricingPreview,
-  FAQSection,
-  FinalCTA,
-} from '../components/sections';
+import { WanforgePage } from '../components/wanforge/WanforgePage';
 ---
 
 <Layout
-  title="Home"
-  preloadImages={[
-    {
-      href: getAssetPath('images/dashboard-mockup.svg'),
-      fetchpriority: 'high',
-      as: 'image',
-      type: 'image/svg+xml',
-    },
-  ]}
+  title="WANFORGE — Engineering & Product Studio"
+  description="WANFORGE membangun produk web, aplikasi, infrastruktur, otomasi, dan sistem terintegrasi untuk kebutuhan operasional nyata."
+  locale="id"
 >
-  {/* 1. Hero Section */}
-  <Hero client:load transition:persist />
-
-  {/* 2. Logo Cloud Section */}
-  <LogoCloudSection client:load transition:persist />
-
-  {/* 3. Features Overview Section */}
-  <FeaturesOverview client:load transition:persist />
-
-  {/* 4. How It Works Section */}
-  <HowItWorks client:load transition:persist />
-
-  {/* 5. Statistics Section */}
-  <StatsSection client:load transition:persist />
-
-  {/* 6. Integrations Section */}
-  <IntegrationsSection client:load transition:persist />
-
-  {/* 7. Testimonials Section */}
-  <TestimonialsSection client:load transition:persist />
-
-  {/* 8. Pricing Preview Section */}
-  <PricingPreview client:load transition:persist />
-
-  {/* 9. FAQ Section */}
-  <FAQSection client:load transition:persist />
-
-  {/* 10. Final CTA Section */}
-  <FinalCTA client:load transition:persist />
+  <WanforgePage client:load locale="id" />
 </Layout>

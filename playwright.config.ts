@@ -61,7 +61,7 @@ export default defineConfig({
   // Shared settings for all projects
   use: {
     // Base URL for all tests
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:4321/',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:4322/',
 
     // Collect trace when retrying failed tests
     trace: 'on-first-retry',
@@ -72,8 +72,8 @@ export default defineConfig({
     // Record video on retry
     video: 'on-first-retry',
 
-    // Run browser in headless mode on CI
-    headless: !!process.env.CI,
+    // Run browser in headless mode
+    headless: true,
 
     // Viewport size (will be overridden by project-specific settings)
     viewport: { width: 1280, height: 720 },
@@ -261,8 +261,8 @@ export default defineConfig({
   // ============================================
 
   webServer: {
-    command: 'bun run dev',
-    url: 'http://localhost:4321/',
+    command: 'bun run dev --port 4322',
+    url: 'http://localhost:4322/',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
   },
