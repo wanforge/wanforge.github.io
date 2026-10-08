@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO } from '../config/site';
+import {
+  CompanyStory,
+  CompanyValues,
+  TeamSection,
+  AboutStats,
+  InvestorsSection,
+  CareersCTA,
+} from '../components/sections';
+
+const seo = pageSEO.about;
+
+/**
+ * About Page
+ *
+ * Comprehensive about page featuring:
+ * - Company Story (Hero + Origin)
+ * - Core Values
+ * - Leadership and Team
+ * - Key Statistics
+ * - Investor Backing
+ * - Careers Call to Action
+ */
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {/* 1. Company Story Section (Hero + Origin) */}
+  <CompanyStory client:idle />
+
+  {/* 2. Company Values Section */}
+  <CompanyValues client:load />
+
+  {/* 3. Team Section */}
+  <TeamSection client:load />
+
+  {/* 4. Company Statistics Section */}
+  <AboutStats client:load />
+
+  {/* 5. Investors Section */}
+  <InvestorsSection client:load />
+
+  {/* 6. Careers CTA Section */}
+  <CareersCTA client:load />
+</Layout>

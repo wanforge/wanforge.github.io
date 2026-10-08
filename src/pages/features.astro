@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO } from '../config/site';
+import { ROUTES } from '../config/paths';
+import {
+  FeaturesHero,
+  FeatureDetail,
+  UseCases,
+  FeatureComparison,
+  DemoVideo,
+  FinalCTA,
+} from '../components/sections';
+
+const seo = pageSEO.features;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {/* 1. Features Hero Section */}
+  <FeaturesHero client:load />
+
+  {/* 2. Detailed Feature Sections (Alternating) */}
+  <FeatureDetail client:load />
+
+  {/* 3. Use Cases Section */}
+  <UseCases client:load />
+
+  {/* 4. Feature Comparison Section */}
+  <FeatureComparison client:load />
+
+  {/* 5. Demo Video Section */}
+  <DemoVideo client:load />
+
+  {/* 6. Final CTA Section (linking to pricing as per requirements) */}
+  <FinalCTA
+    client:load
+    primaryButton={{ text: 'View Pricing', href: ROUTES.PRICING }}
+    secondaryButton={{ text: 'Contact Sales', href: ROUTES.CONTACT }}
+  />
+</Layout>

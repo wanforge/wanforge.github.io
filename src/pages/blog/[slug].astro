@@ -1,0 +1,246 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ArticleSchema } from '../../components/seo';
+import { BlogNewsletter, RelatedPosts } from '../../components/sections';
+import { AuthorBio } from '../../components/blog/AuthorBio';
+import { blogPosts, type BlogPost } from '../../data/blog';
+import { Container } from '../../components/ui/Container';
+import { Section } from '../../components/ui/Section';
+import { Badge } from '../../components/ui/Badge';
+import { Calendar, Clock, ChevronLeft } from 'lucide-react';
+import { Link } from '../../components/ui/Link';
+import { SocialShare } from '../../components/ui/SocialShare';
+import { ROUTES, getAssetPath } from '../../config/paths';
+import OptimizedImage from '../../components/ui/OptimizedImage.astro';
+
+export async function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const {
+  title,
+  excerpt,
+  content,
+  category,
+  author,
+  publishedAt,
+  readingTime,
+  coverImage,
+  tags,
+  relatedPosts: relatedPostIds,
+} = post;
+
+// Format date
+const formattedDate = new Date(publishedAt).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Get related post objects
+const relatedPosts = blogPosts.filter((p) => relatedPostIds?.includes(p.id));
+
+// Custom breadcrumbs for the blog post
+const crumbs = [
+  { name: 'Home', item: ROUTES.HOME },
+  { name: 'Blog', item: ROUTES.BLOG },
+  { name: title, item: ROUTES.BLOG_POST(post.slug) },
+];
+---
+
+<Layout
+  title={`${title} | ModernSaaS Blog`}
+  description={excerpt}
+  crumbs={crumbs}
+  ogType="article"
+  ogImage={coverImage}
+  preloadImages={[
+    {
+      href: getAssetPath(coverImage),
+      fetchpriority: 'high',
+    },
+  ]}
+>
+  <ArticleSchema post={post} />
+  {/* 1. Post Hero */}
+  <Section
+    background="transparent"
+    padding="xl"
+    className="pt-32 pb-12 sm:pt-40"
+    data-testid="blog-post-header"
+  >
+    <Container size="narrow">
+      <Link
+        href={ROUTES.BLOG}
+        variant="subtle"
+        className="inline-flex items-center gap-2 mb-8 group"
+      >
+        <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+        Back to Blog
+      </Link>
+
+      <div class="space-y-6">
+        <Badge variant="info" className="uppercase tracking-wider">
+          {category}
+        </Badge>
+
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-text-primary leading-tight tracking-tight"
+        >
+          {title}
+        </h1>
+
+        <p class="text-xl text-text-secondary leading-relaxed">
+          {excerpt}
+        </p>
+
+        <div class="flex flex-wrap items-center gap-6 pt-4 text-sm text-text-muted">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full overflow-hidden border border-border-default">
+              <OptimizedImage
+                src={author.avatar}
+                alt={author.name}
+                class="w-full h-full object-cover"
+                width={32}
+                height={32}
+                rounded="full"
+                loading="eager"
+                fetchpriority="low"
+              />
+            </div>
+            <span class="font-medium text-text-secondary">{author.name}</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            <time datetime={publishedAt}>{formattedDate}</time>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <Clock className="w-4 h-4" />
+            <span>{readingTime} min read</span>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <SocialShare title={title} client:load />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* 2. Featured Image */}
+  <Section background="transparent" padding="none" className="mb-12">
+    <Container size="full">
+      <div
+        class="relative aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl border border-border-default"
+      >
+        <OptimizedImage
+          src={coverImage}
+          alt={title}
+          class="w-full h-full object-cover"
+          loading="eager"
+          responsive={true}
+          preset="hero"
+          fetchpriority="high"
+        />
+      </div>
+    </Container>
+  </Section>
+
+  {/* 3. Post Content */}
+  <Section background="transparent" padding="lg">
+    <Container size="narrow">
+      <article class="prose prose-lg prose-primary max-w-none" data-testid="blog-post-content">
+        {/* 1. Post Content */}
+        <div class="content">
+          {
+            content ? (
+              <div set:html={content} />
+            ) : (
+              <>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <h2>The Future of SaaS</h2>
+                <p>
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                  culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <blockquote>
+                  The best way to predict the future is to create it. Innovation distinguishes
+                  between a leader and a follower.
+                </blockquote>
+                <p>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+                  veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                </p>
+                <h2>Key Takeaways</h2>
+                <ul>
+                  <li>Focus on user experience above all else</li>
+                  <li>Iterate quickly based on customer feedback</li>
+                  <li>Build scalable infrastructure from day one</li>
+                  <li>Prioritize security and data privacy</li>
+                </ul>
+                <p>
+                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
+                  quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                </p>
+              </>
+            )
+          }
+        </div>
+
+        <div
+          class="mt-8 pt-8 border-t border-border-default flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+        >
+          <div class="flex flex-col gap-2">
+            <span class="text-sm font-semibold text-text-primary uppercase tracking-wider"
+              >Share this article</span
+            >
+            <SocialShare title={title} client:load />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span
+              class="text-sm font-semibold text-text-primary uppercase tracking-wider text-left sm:text-right"
+              >Categories</span
+            >
+            <div class="flex flex-wrap gap-2 justify-start sm:justify-end">
+              {
+                tags.map((tag) => (
+                  <Badge variant="default" className="bg-bg-secondary text-text-secondary">
+                    #{tag}
+                  </Badge>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* 4. Author Bio */}
+      <div class="mt-16">
+        <AuthorBio author={author} />
+      </div>
+    </Container>
+  </Section>
+
+  {/* 5. Related Posts */}
+  {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
+
+  {/* 6. Newsletter Section */}
+  <BlogNewsletter client:load />
+</Layout>

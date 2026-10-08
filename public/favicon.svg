@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <!-- Light mode gradient: Primary to Secondary -->
+    <linearGradient id="favicon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    <!-- Dark mode gradient: Lighter version for visibility -->
+    <linearGradient id="favicon-gradient-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Lightning bolt / Zap icon centered -->
+  <path 
+    d="M74.5 12 L34.5 68 L60.5 68 L53.5 116 L93.5 60 L67.5 60 Z" 
+    fill="url(#favicon-gradient)"
+    stroke="none"
+  />
+  <style>
+    path { fill: url(#favicon-gradient); }
+    @media (prefers-color-scheme: dark) {
+      path { fill: url(#favicon-gradient-dark); }
+    }
+  </style>
+</svg>

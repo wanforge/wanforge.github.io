@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ROUTES } from '../config/paths';
+import { CompanyValues } from '../components/sections';
+import { openPositions, offices } from '../data/team';
+import { company } from '../config/site';
+import {
+  Globe,
+  Heart,
+  Zap,
+  Users,
+  Sparkles,
+  MapPin,
+  Briefcase,
+  ArrowRight,
+  Coffee,
+  Calendar,
+  Dumbbell,
+  Plane,
+} from 'lucide-react';
+
+// Define SEO data inline since pageSEO type doesn't include careers yet
+const seo = {
+  title: 'Careers',
+  description: `Join the ${company.name} team. We're hiring passionate people who want to build the future of work.`,
+} as const;
+
+/**
+ * Benefits data for the careers page
+ */
+const benefits = [
+  {
+    icon: Globe,
+    title: 'Remote First',
+    description: 'Work from anywhere in the world. We believe in results, not clock-ins.',
+  },
+  {
+    icon: Heart,
+    title: 'Health & Wellness',
+    description: 'Comprehensive health, dental, and vision coverage for you and your family.',
+  },
+  {
+    icon: Zap,
+    title: 'Competitive Equity',
+    description: 'Everyone is an owner. We offer generous equity packages to all employees.',
+  },
+  {
+    icon: Users,
+    title: 'Team Events',
+    description: 'Regular team retreats, virtual hangouts, and annual company offsite.',
+  },
+  {
+    icon: Coffee,
+    title: 'Learning Budget',
+    description: '$2,000 annual budget for courses, conferences, and professional development.',
+  },
+  {
+    icon: Calendar,
+    title: 'Flexible PTO',
+    description: 'Unlimited paid time off. Take the time you need to recharge and refresh.',
+  },
+  {
+    icon: Dumbbell,
+    title: 'Wellness Stipend',
+    description: '$100 monthly stipend for gym memberships, fitness apps, or wellness activities.',
+  },
+  {
+    icon: Plane,
+    title: 'Travel Opportunities',
+    description: 'Visit our offices worldwide and experience different cultures.',
+  },
+];
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {/* Hero Section */}
+  <section
+    id="careers-hero"
+    class="relative pt-20 pb-12 lg:pt-32 lg:pb-16 overflow-hidden min-h-[40vh] flex items-center bg-transparent"
+    aria-label="Careers Hero Section"
+  >
+    <div class="absolute inset-0 opacity-30 dark:opacity-10">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-secondary-500/20"
+      >
+      </div>
+    </div>
+
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col items-center text-center max-w-4xl mx-auto">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-6 border border-primary-200 dark:border-primary-800"
+        >
+          <Sparkles size={16} />
+          <span>We're Hiring!</span>
+        </div>
+
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-primary mb-6 leading-[1.1]"
+        >
+          Build the future of{' '}
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400"
+          >
+            work
+          </span>
+          {' '}with us
+        </h1>
+
+        <p class="text-lg md:text-xl text-text-muted mb-8 leading-relaxed max-w-2xl mx-auto">
+          Join {company.name} and help us build the tools that power thousands of teams worldwide. We're
+          looking for passionate people who want to make a difference.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#open-positions"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+          >
+            View Open Positions
+            <ArrowRight size={18} />
+          </a>
+          <a
+            href="#benefits"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-text-primary bg-bg-primary border border-border-default hover:bg-bg-secondary rounded-lg transition-colors"
+          >
+            Learn About Benefits
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Mission Section */}
+  <section id="mission" class="bg-bg-secondary py-16 md:py-24" aria-label="Our Mission">
+    <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-6">Our Mission</h2>
+      <p class="text-lg md:text-xl text-text-secondary leading-relaxed">
+        {company.mission}
+      </p>
+      <p class="text-lg text-text-secondary mt-4 leading-relaxed">
+        {company.vision}
+      </p>
+    </div>
+  </section>
+
+  {/* Values Section */}
+  <CompanyValues client:load />
+
+  {/* Benefits Section */}
+  <section id="benefits" class="bg-bg-secondary py-16 md:py-24" aria-label="Benefits and Perks">
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Benefits & Perks</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          We take care of our team so they can do their best work. Here's what you can expect when
+          you join us.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          benefits.map((benefit) => (
+            <div class="flex flex-col p-6 rounded-2xl bg-bg-primary border border-border-default shadow-sm hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 mb-4">
+                <benefit.icon size={24} />
+              </div>
+              <h3 class="text-lg font-bold text-text-primary mb-2">{benefit.title}</h3>
+              <p class="text-sm text-text-secondary">{benefit.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Offices Section */}
+  <section id="offices" class="py-16 md:py-24 bg-bg-primary" aria-label="Our Offices">
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Our Offices</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          While we're remote-first, we have hubs around the world for those who prefer in-person
+          collaboration.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          offices.map((office) => (
+            <div class="flex flex-col p-6 rounded-2xl bg-bg-secondary border border-border-default">
+              <div class="flex items-center gap-2 mb-3">
+                <MapPin size={20} className="text-primary-600 dark:text-primary-400" />
+                <h3 class="text-lg font-bold text-text-primary">{office.city}</h3>
+              </div>
+              <p class="text-sm text-text-secondary mb-2">{office.address}</p>
+              <p class="text-sm text-text-muted">{office.country}</p>
+              {office.isHQ && (
+                <span class="mt-3 inline-flex items-center px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold w-fit">
+                  Headquarters
+                </span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Open Positions Section */}
+  <section
+    id="open-positions"
+    class="bg-primary-50 dark:bg-primary-950/30 py-16 md:py-24"
+    aria-label="Open Positions"
+  >
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Open Positions</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Ready to join us? Check out our current openings and find your perfect role.
+        </p>
+      </div>
+
+      <div class="space-y-4 max-w-4xl mx-auto">
+        {
+          openPositions.map((position) => (
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between p-6 rounded-2xl bg-bg-primary border border-border-default shadow-sm hover:shadow-md transition-shadow">
+              <div class="mb-4 md:mb-0">
+                <div class="flex items-center gap-3 mb-2">
+                  <Briefcase size={20} className="text-primary-600 dark:text-primary-400" />
+                  <h3 class="text-lg font-bold text-text-primary">{position.title}</h3>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 text-sm text-text-secondary">
+                  <span class="inline-flex items-center gap-1">
+                    <Users size={14} />
+                    {position.department}
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    <MapPin size={14} />
+                    {position.location}
+                  </span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold">
+                    {position.type}
+                  </span>
+                </div>
+              </div>
+              <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors w-full md:w-auto">
+                Apply Now
+              </button>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-text-secondary mb-4">
+          Don't see a role that fits? We're always looking for great talent.
+        </p>
+        <a
+          href="mailto:careers@modernsaas.dev"
+          class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:underline"
+        >
+          Send us your resume
+          <ArrowRight size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section id="careers-cta" class="bg-bg-secondary py-16 md:py-24" aria-label="Join Our Team">
+    <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+        Ready to make an impact?
+      </h2>
+      <p class="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
+        Join a team of passionate individuals building the future of work. Together, we can help
+        teams around the world achieve more.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#open-positions"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+        >
+          View All Positions
+          <ArrowRight size={20} />
+        </a>
+        <a
+          href={ROUTES.ABOUT}
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-text-primary bg-bg-primary border border-border-default hover:bg-bg-secondary rounded-lg transition-colors"
+        >
+          Learn About Us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (href) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }
+    });
+  });
+</script>

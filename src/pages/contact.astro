@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO } from '../config/site';
+import { ContactHero, ContactInfo, FAQSection } from '../components/sections';
+import { ContactForm } from '../components/forms/ContactForm';
+import { Container, Section } from '../components/ui';
+import { supportFAQs } from '../data/faq';
+
+const seo = pageSEO.contact;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {/* 1. Contact Hero */}
+  <ContactHero client:load />
+
+  {/* 2. Contact Form Section */}
+  <Section
+    id="contact-form-section"
+    background="muted"
+    padding="lg"
+    className="relative z-20 -mt-16 pb-24"
+  >
+    <Container size="narrow">
+      <div class="bg-bg-primary rounded-3xl shadow-xl border border-border-default overflow-hidden">
+        <ContactForm client:load />
+      </div>
+    </Container>
+  </Section>
+
+  {/* 3. Alternative Contact Methods */}
+  <ContactInfo client:load />
+
+  {/* 4. Map Placeholder Section */}
+  <Section id="location-map" background="muted" padding="lg">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl mb-4">
+          Visit our headquarters
+        </h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Located in the heart of San Francisco's innovation district.
+        </p>
+      </div>
+
+      <div
+        class="relative w-full aspect-[21/9] rounded-3xl overflow-hidden border border-border-default bg-bg-secondary group"
+      >
+        {/* Mock Map Background */}
+        <div
+          class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-bg-primary/80 via-transparent to-transparent"
+        >
+        </div>
+
+        {/* Map UI Elements */}
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-brand-primary/20 rounded-full animate-ping"></div>
+            <div
+              class="relative bg-brand-primary text-white p-4 rounded-2xl shadow-lg border-2 border-white dark:border-gray-800"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle
+                  cx="12"
+                  cy="10"
+                  r="3"></circle></svg
+              >
+            </div>
+          </div>
+        </div>
+
+        {/* Map Controls Mockup */}
+        <div class="absolute top-6 right-6 flex flex-col gap-2">
+          <div
+            class="w-10 h-10 bg-bg-primary border border-border-default rounded-lg flex items-center justify-center shadow-sm text-text-primary"
+          >
+            +
+          </div>
+          <div
+            class="w-10 h-10 bg-bg-primary border border-border-default rounded-lg flex items-center justify-center shadow-sm text-text-primary"
+          >
+            -
+          </div>
+        </div>
+
+        <div class="absolute bottom-6 left-6 right-6 sm:left-auto sm:w-80">
+          <div class="bg-bg-primary p-6 rounded-2xl shadow-xl border border-border-default">
+            <h3 class="font-bold text-text-primary mb-1">San Francisco HQ</h3>
+            <p class="text-sm text-text-secondary mb-4">
+              123 Innovation Drive, Suite 400<br />San Francisco, CA 94105
+            </p>
+            <button
+              class="w-full py-2 bg-brand-primary text-white rounded-xl text-sm font-semibold hover:bg-brand-primary/90 transition-colors"
+            >
+              Get Directions
+            </button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* 5. FAQ Preview Section */}
+  <FAQSection
+    client:load
+    heading="Support FAQ"
+    subheading="Quick answers to common questions about our support and services."
+    faqs={supportFAQs}
+  />
+</Layout>

@@ -1,0 +1,193 @@
+{
+  "generated": "2026-02-11T03:47:54.028Z",
+  "totalImages": 22,
+  "categories": {
+    "tech": 4,
+    "abstract": 4,
+    "team": 22,
+    "office": 4,
+    "devices": 4
+  },
+  "images": [
+    {
+      "filename": "tech-01.jpg",
+      "category": "tech",
+      "attribution": "Getty Images (@gettyimages)",
+      "dimensions": {
+        "width": 6000,
+        "height": 4500
+      }
+    },
+    {
+      "filename": "tech-02.jpg",
+      "category": "tech",
+      "attribution": "Milad Fakurian (@fakurian)",
+      "dimensions": {
+        "width": 4000,
+        "height": 3000
+      }
+    },
+    {
+      "filename": "tech-03.jpg",
+      "category": "tech",
+      "attribution": "Andrey Matveev (@zelebb)",
+      "dimensions": {
+        "width": 5824,
+        "height": 4368
+      }
+    },
+    {
+      "filename": "tech-04.svg",
+      "category": "tech",
+      "attribution": "Placeholder (Generated)",
+      "dimensions": {
+        "width": 1200,
+        "height": 800
+      }
+    },
+    {
+      "filename": "abstract-01.jpg",
+      "category": "abstract",
+      "attribution": "Woliul Hasan (@shotbywoliul)",
+      "dimensions": {
+        "width": 8000,
+        "height": 5333
+      }
+    },
+    {
+      "filename": "abstract-02.jpg",
+      "category": "abstract",
+      "attribution": "Milad Fakurian (@fakurian)",
+      "dimensions": {
+        "width": 8000,
+        "height": 6000
+      }
+    },
+    {
+      "filename": "abstract-03.jpg",
+      "category": "abstract",
+      "attribution": "Sean Sinclair (@seanwsinclair)",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      }
+    },
+    {
+      "filename": "abstract-04.jpg",
+      "category": "abstract",
+      "attribution": "Codioful (Formerly Gradienta) (@codioful)",
+      "dimensions": {
+        "width": 7200,
+        "height": 4800
+      }
+    },
+    {
+      "filename": "team/person-01.jpg",
+      "category": "team",
+      "attribution": "Unsplash",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      }
+    },
+    {
+      "filename": "team/person-02.jpg",
+      "category": "team",
+      "attribution": "Unsplash",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      }
+    },
+    {
+      "filename": "team/person-03.jpg",
+      "category": "team",
+      "attribution": "Unsplash",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      }
+    },
+    {
+      "filename": "team/person-04.jpg",
+      "category": "team",
+      "attribution": "Unsplash",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      }
+    },
+    {
+      "filename": "office-01.jpg",
+      "category": "office",
+      "attribution": "Toa Heftiba (@heftiba)",
+      "dimensions": {
+        "width": 5533,
+        "height": 3617
+      }
+    },
+    {
+      "filename": "office-02.jpg",
+      "category": "office",
+      "attribution": "Bernd 📷 Dittrich (@hdbernd)",
+      "dimensions": {
+        "width": 6240,
+        "height": 3354
+      }
+    },
+    {
+      "filename": "office-03.jpg",
+      "category": "office",
+      "attribution": "Curated Lifestyle (@curatedlifestyle)",
+      "dimensions": {
+        "width": 10404,
+        "height": 4710
+      }
+    },
+    {
+      "filename": "office-04.svg",
+      "category": "office",
+      "attribution": "Placeholder (Generated)",
+      "dimensions": {
+        "width": 1200,
+        "height": 800
+      }
+    },
+    {
+      "filename": "devices-01.jpg",
+      "category": "devices",
+      "attribution": "Philip Oroni (@philipsfuture)",
+      "dimensions": {
+        "width": 4500,
+        "height": 3000
+      }
+    },
+    {
+      "filename": "devices-02.jpg",
+      "category": "devices",
+      "attribution": "Allison Saeng (@allisonsaeng)",
+      "dimensions": {
+        "width": 4000,
+        "height": 3000
+      }
+    },
+    {
+      "filename": "devices-03.jpg",
+      "category": "devices",
+      "attribution": "Michael Förtsch (@michael_f)",
+      "dimensions": {
+        "width": 6000,
+        "height": 3375
+      }
+    },
+    {
+      "filename": "devices-04.jpg",
+      "category": "devices",
+      "attribution": "Andrey Matveev (@zelebb)",
+      "dimensions": {
+        "width": 8192,
+        "height": 6144
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO } from '../config/site';
+import {
+  SupportHero,
+  SupportCategories,
+  SupportArticles,
+  SupportCTA,
+  FAQSection,
+} from '../components/sections';
+import { supportFAQs } from '../data/faq';
+
+const seo = pageSEO.support;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <SupportHero client:load />
+  <SupportCategories client:load />
+  <SupportArticles client:load />
+  <FAQSection
+    client:load
+    heading="Frequently Asked Support Questions"
+    subheading="Common technical and account questions to help you get unstuck."
+    faqs={supportFAQs}
+  />
+  <SupportCTA client:load />
+</Layout>

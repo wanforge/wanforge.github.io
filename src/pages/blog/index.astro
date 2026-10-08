@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { BlogHero, BlogNewsletter } from '../../components/sections';
+import { BlogListingContent } from '../../components/blog';
+import { blogMetadata, featuredBlogPost } from '../../data/blog';
+import { getAssetPath } from '../../config/paths';
+---
+
+<Layout
+  title={blogMetadata.title}
+  description={blogMetadata.description}
+  preloadImages={[
+    {
+      href: getAssetPath(featuredBlogPost.coverImage),
+      fetchpriority: 'high',
+      as: 'image',
+    },
+  ]}
+>
+  {/* 1. Blog Hero */}
+  <BlogHero />
+
+  {/* 2. Blog Interactive Listing (Search, Filter, Featured, Grid, Pagination) */}
+  <BlogListingContent client:load />
+
+  {/* 3. Blog Newsletter Section */}
+  <BlogNewsletter client:load />
+</Layout>

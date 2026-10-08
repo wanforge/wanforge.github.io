@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO, company } from '../config/site';
+import { RoadmapHero, RoadmapTimeline, FAQSection, FinalCTA } from '../components/sections';
+import { roadmapData, roadmapMetadata } from '../data/roadmap';
+import { roadmapFAQs } from '../data/faq';
+
+const seo = pageSEO.roadmap;
+---
+
+<Layout title={`${seo.title} | ${company.name}`} description={seo.description}>
+  <RoadmapHero client:load title={roadmapMetadata.title} subheading={roadmapMetadata.subheading} />
+
+  <RoadmapTimeline quarters={roadmapData} client:load />
+
+  <FAQSection
+    heading="Roadmap FAQ"
+    subheading="Common questions about our product direction and planning process."
+    faqs={roadmapFAQs}
+    client:load
+  />
+
+  <FinalCTA client:load />
+</Layout>

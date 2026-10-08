@@ -1,0 +1,296 @@
+@layer components {
+  /* ============================================
+     Prose / Article Typography Styles
+     ============================================ */
+
+  .prose {
+    --prose-body: var(--color-text-secondary);
+    --prose-headings: var(--color-text-primary);
+    --prose-links: var(--color-text-link);
+    --prose-links-hover: var(--color-text-link-hover);
+    --prose-bold: var(--color-text-primary);
+    --prose-counters: var(--color-text-tertiary);
+    --prose-bullets: var(--color-border-strong);
+    --prose-hr: var(--color-border-default);
+    --prose-quotes: var(--color-text-primary);
+    --prose-quote-borders: var(--color-primary-500);
+    --prose-captions: var(--color-text-tertiary);
+    --prose-code: var(--color-text-primary);
+    --prose-pre-code: var(--color-text-primary);
+    --prose-pre-bg: var(--color-bg-secondary);
+    --prose-th-borders: var(--color-border-strong);
+    --prose-td-borders: var(--color-border-default);
+
+    color: var(--prose-body);
+    max-width: none;
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-base);
+  }
+
+  /* Large variant */
+  .prose-lg {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* Spacing */
+  .prose :where(p):not(:where([class~='not-prose'] *)) {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  /* Lead paragraph */
+  .prose :where([class~='lead']):not(:where([class~='not-prose'] *)) {
+    color: var(--color-text-primary);
+    font-size: 1.25em;
+    line-height: 1.6;
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+  }
+
+  /* Links */
+  .prose :where(a):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-links);
+    text-decoration: underline;
+    font-weight: 500;
+    text-underline-offset: 0.2em;
+    transition: color var(--transition-base);
+  }
+
+  .prose :where(a):hover:not(:where([class~='not-prose'] *)) {
+    color: var(--prose-links-hover);
+  }
+
+  /* Strong / Bold */
+  .prose :where(strong):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-bold);
+    font-weight: 600;
+  }
+
+  /* Lists */
+  .prose :where(ol):not(:where([class~='not-prose'] *)) {
+    list-style-type: decimal;
+    padding-left: 1.625em;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  .prose :where(ul):not(:where([class~='not-prose'] *)) {
+    list-style-type: disc;
+    padding-left: 1.625em;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  .prose :where(li):not(:where([class~='not-prose'] *)) {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose :where(ol > li)::marker {
+    font-weight: 400;
+    color: var(--prose-counters);
+  }
+
+  .prose :where(ul > li)::marker {
+    color: var(--prose-bullets);
+  }
+
+  /* Nested lists */
+  .prose :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~='not-prose'] *)) {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+
+  /* Horizontal Rule */
+  .prose :where(hr):not(:where([class~='not-prose'] *)) {
+    border-color: var(--prose-hr);
+    border-top-width: 1px;
+    margin-top: 3em;
+    margin-bottom: 3em;
+  }
+
+  /* Blockquotes */
+  .prose :where(blockquote):not(:where([class~='not-prose'] *)) {
+    font-weight: 500;
+    font-style: italic;
+    color: var(--prose-quotes);
+    border-left-width: 4px;
+    border-left-color: var(--prose-quote-borders);
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    padding-left: 1.5em;
+    background-color: rgb(from var(--color-primary-500) r g b / 5%);
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    padding-right: 1.5em;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+
+  .prose :where(blockquote p:first-of-type)::before {
+    content: open-quote;
+  }
+
+  .prose :where(blockquote p:last-of-type)::after {
+    content: close-quote;
+  }
+
+  /* Headings */
+  .prose :where(h1):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-headings);
+    font-weight: 800;
+    font-size: 2.25em;
+    margin-top: 0;
+    margin-bottom: 0.88em;
+    line-height: 1.1;
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .prose :where(h2):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-headings);
+    font-weight: 700;
+    font-size: 1.5em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    line-height: 1.33;
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .prose :where(h3):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-headings);
+    font-weight: 600;
+    font-size: 1.25em;
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    line-height: 1.6;
+  }
+
+  .prose :where(h4):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-headings);
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+  }
+
+  /* Media */
+  .prose :where(img):not(:where([class~='not-prose'] *)) {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border-default);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .prose :where(figure):not(:where([class~='not-prose'] *)) {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .prose :where(figcaption):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-captions);
+    font-size: 0.875em;
+    line-height: 1.4;
+    margin-top: 0.8em;
+    text-align: center;
+  }
+
+  /* Code */
+  .prose :where(code):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-code);
+    font-weight: 600;
+    font-size: 0.875em;
+    background-color: var(--color-bg-tertiary);
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+  }
+
+  /* Inline code in headings or bold */
+  .prose :where(h1, h2, h3, h4, strong) :where(code):not(:where([class~='not-prose'] *)) {
+    font-weight: inherit;
+    color: inherit;
+  }
+
+  /* Preformatted code blocks - styled to look like CodeBlock component */
+  .prose :where(pre):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-pre-code);
+    background-color: var(--prose-pre-bg);
+    overflow-x: auto;
+    font-size: 0.875em;
+    line-height: 1.7;
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
+    border-radius: var(--radius-lg);
+    padding: 1.25em 1.5em;
+    border: 1px solid var(--color-border-default);
+    font-family: var(--font-mono);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prose :where(pre code):not(:where([class~='not-prose'] *)) {
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
+    font-weight: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  /* Tables */
+  .prose :where(table):not(:where([class~='not-prose'] *)) {
+    width: 100%;
+    table-layout: auto;
+    text-align: left;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 0.875em;
+    line-height: 1.7;
+  }
+
+  .prose :where(thead):not(:where([class~='not-prose'] *)) {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--prose-th-borders);
+  }
+
+  .prose :where(thead th):not(:where([class~='not-prose'] *)) {
+    color: var(--prose-headings);
+    font-weight: 600;
+    vertical-align: bottom;
+    padding-right: 0.6em;
+    padding-bottom: 0.6em;
+    padding-left: 0.6em;
+  }
+
+  .prose :where(tbody tr):not(:where([class~='not-prose'] *)) {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--prose-td-borders);
+  }
+
+  .prose :where(tbody tr:last-child):not(:where([class~='not-prose'] *)) {
+    border-bottom-width: 0;
+  }
+
+  .prose :where(tbody td):not(:where([class~='not-prose'] *)) {
+    vertical-align: baseline;
+    padding-top: 0.6em;
+    padding-right: 0.6em;
+    padding-bottom: 0.6em;
+    padding-left: 0.6em;
+  }
+
+  /* Custom Color Variants */
+  .prose-primary {
+    --prose-quote-borders: var(--color-primary-500);
+    --prose-links: var(--color-primary-600);
+    --prose-links-hover: var(--color-primary-700);
+  }
+
+  .dark .prose-primary {
+    --prose-links: var(--color-primary-400);
+    --prose-links-hover: var(--color-primary-300);
+  }
+}

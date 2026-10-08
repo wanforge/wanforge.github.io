@@ -1,0 +1,668 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import './prose.css';
+@variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   ModernSaaS Landing Page - Global Styles
+   ============================================
+   
+   This file imports the CSS token system from tokens.css
+   and defines base styles, utilities, and Tailwind theme
+   configuration.
+   
+   Token System Structure:
+   - Primitive Tokens: Raw color values, numbers
+   - Semantic Tokens: Theme-adaptive values (light/dark)
+   - See tokens.css for complete token definitions
+   
+   ============================================ */
+
+/* ------------------------------------------
+   CSS Reset & Normalize
+   ------------------------------------------ */
+
+/* ------------------------------------------
+   Base Styles & Reset
+   ------------------------------------------ */
+@layer base {
+  /* Box-sizing reset */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Remove default margins and padding */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Remove list styles */
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  /* Remove default button styles */
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Remove default anchor styles */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Remove default form element styles */
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* Touch Action - Remove double-tap zoom delay on mobile */
+  button,
+  a,
+  [role='button'],
+  input,
+  textarea,
+  select,
+  label {
+    touch-action: manipulation;
+  }
+
+  /* Tap Highlight - Remove default gray overlay, keep for focus */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  *:focus-visible {
+    -webkit-tap-highlight-color: rgba(var(--color-primary-500), 0.2);
+  }
+
+  /* Image reset */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Table reset */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* Remove default heading styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  /* Paragraph reset */
+  p {
+    margin: 0;
+  }
+
+  /* Address and cite reset */
+  address,
+  cite {
+    font-style: normal;
+  }
+
+  * {
+    @apply border-border-default;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-sans;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  /* Selection Styles */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+
+  .dark ::selection {
+    @apply bg-primary-800 text-primary-100;
+  }
+
+  /* Focus Visible Styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-focus-ring ring-offset-2 ring-offset-focus-ring-offset;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------
+   Animation Safeguards
+   ------------------------------------------
+   These classes ensure animations don't cause
+   content to disappear or become inaccessible.
+   ------------------------------------------ */
+
+/**
+ * Applied during animation for hardware acceleration.
+ * Will-change is removed after animation completes to
+ * prevent memory overhead.
+ */
+.animate-will-change {
+  will-change: transform, opacity;
+}
+
+/**
+ * Ensures content remains visible after animation.
+ * Applied as a safeguard to prevent elements from
+ * disappearing due to animation cleanup issues.
+ * This selector targets elements with data-animated attribute
+ * and applies visibility safeguards.
+ */
+.animate-visible-safeguard,
+[data-animated='true'] {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/**
+ * Enhanced visibility safeguard for all animated elements.
+ * Applied to ensure elements remain visible after animation completes.
+ * Uses !important to override any conflicting animation states.
+ */
+[data-animated='true'],
+[data-animated='true'] * {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/**
+ * Post-animation state safeguard.
+ * Ensures elements maintain full visibility after animations complete.
+ * Targets elements that have finished their animation lifecycle.
+ */
+[data-animation-complete='true'],
+.animate-finished {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/**
+ * Defensive CSS: Default visibility for all motion elements.
+ * Ensures Framer Motion elements are visible by default before JS executes.
+ * This prevents the "disappearing on scroll" bug by establishing visible
+ * baseline states that Framer Motion can then animate from.
+ */
+[data-framer-motion],
+[data-framer-motion] *,
+[data-motion],
+[data-motion] *,
+[class*='motion-'] {
+  visibility: visible;
+  opacity: 1;
+}
+
+/**
+ * Defensive CSS: Section visibility baseline.
+ * Ensures all section elements are visible by default.
+ * This provides CSS-level protection before JavaScript hydration.
+ */
+section,
+section > div,
+section > div > div {
+  visibility: visible;
+  opacity: 1;
+}
+
+/**
+ * Defensive CSS: Animation container visibility.
+ * Targets common animation wrapper patterns to ensure
+ * content remains visible during and after animations.
+ */
+[class*='animate-'],
+[class*='animate-'] > *,
+[class*='fade'],
+[class*='fade'] > *,
+[class*='scale'],
+[class*='scale'] > *,
+[class*='slide'],
+[class*='slide'] > * {
+  visibility: visible;
+  opacity: 1;
+}
+
+/**
+ * Defensive CSS: will-change-transform visibility safeguard.
+ * Elements using will-change-transform (GPU acceleration) should
+ * remain visible at all times to prevent disappearing on scroll.
+ */
+.will-change-transform,
+[class*='will-change'] {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/**
+ * Defensive CSS: Scroll-triggered animation containers.
+ * Ensures viewport-triggered animation containers are visible
+ * before intersection observer activates.
+ */
+[data-motion-while-in-view],
+[data-motion-while-in-view] *,
+[data-motion-viewport],
+[data-motion-viewport] * {
+  visibility: visible;
+  opacity: 1;
+}
+
+/**
+ * Reduced motion: immediately show content.
+ * Applied when user prefers reduced motion.
+ * All animated elements are forced visible with no transforms.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-reduced-motion-visible,
+  [data-animated='true'],
+  [data-animated='true'] * {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Ensure all motion elements are visible in reduced motion mode */
+  [data-framer-motion],
+  [class*='motion-'],
+  [class*='animate-'] {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ------------------------------------------
+   Theme Configuration for Tailwind v4
+   ------------------------------------------ */
+@theme {
+  --dark-mode: selector;
+
+  /* ========================================
+     PRIMITIVE COLOR TOKENS
+     ======================================== */
+
+  /* Primary - Trust Blue */
+  --color-primary-50: var(--primitive-color-primary-50);
+  --color-primary-100: var(--primitive-color-primary-100);
+  --color-primary-200: var(--primitive-color-primary-200);
+  --color-primary-300: var(--primitive-color-primary-300);
+  --color-primary-400: var(--primitive-color-primary-400);
+  --color-primary-500: var(--primitive-color-primary-500);
+  --color-primary-600: var(--primitive-color-primary-600);
+  --color-primary-700: var(--primitive-color-primary-700);
+  --color-primary-800: var(--primitive-color-primary-800);
+  --color-primary-900: var(--primitive-color-primary-900);
+  --color-primary-950: var(--primitive-color-primary-950);
+
+  /* Secondary - Innovation Purple */
+  --color-secondary-50: var(--primitive-color-secondary-50);
+  --color-secondary-100: var(--primitive-color-secondary-100);
+  --color-secondary-200: var(--primitive-color-secondary-200);
+  --color-secondary-300: var(--primitive-color-secondary-300);
+  --color-secondary-400: var(--primitive-color-secondary-400);
+  --color-secondary-500: var(--primitive-color-secondary-500);
+  --color-secondary-600: var(--primitive-color-secondary-600);
+  --color-secondary-700: var(--primitive-color-secondary-700);
+  --color-secondary-800: var(--primitive-color-secondary-800);
+  --color-secondary-900: var(--primitive-color-secondary-900);
+  --color-secondary-950: var(--primitive-color-secondary-950);
+
+  /* Accent - Energy Coral/Orange */
+  --color-accent-50: var(--primitive-color-accent-50);
+  --color-accent-100: var(--primitive-color-accent-100);
+  --color-accent-200: var(--primitive-color-accent-200);
+  --color-accent-300: var(--primitive-color-accent-300);
+  --color-accent-400: var(--primitive-color-accent-400);
+  --color-accent-500: var(--primitive-color-accent-500);
+  --color-accent-600: var(--primitive-color-accent-600);
+  --color-accent-700: var(--primitive-color-accent-700);
+  --color-accent-800: var(--primitive-color-accent-800);
+  --color-accent-900: var(--primitive-color-accent-900);
+  --color-accent-950: var(--primitive-color-accent-950);
+
+  /* Neutral Gray Scale */
+  --color-gray-50: var(--primitive-color-gray-50);
+  --color-gray-100: var(--primitive-color-gray-100);
+  --color-gray-200: var(--primitive-color-gray-200);
+  --color-gray-300: var(--primitive-color-gray-300);
+  --color-gray-400: var(--primitive-color-gray-400);
+  --color-gray-500: var(--primitive-color-gray-500);
+  --color-gray-600: var(--primitive-color-gray-600);
+  --color-gray-700: var(--primitive-color-gray-700);
+  --color-gray-800: var(--primitive-color-gray-800);
+  --color-gray-900: var(--primitive-color-gray-900);
+  --color-gray-950: var(--primitive-color-gray-950);
+
+  /* Semantic Colors */
+  --color-success-50: var(--primitive-color-success-50);
+  --color-success-100: var(--primitive-color-success-100);
+  --color-success-200: var(--primitive-color-success-200);
+  --color-success-300: var(--primitive-color-success-300);
+  --color-success-400: var(--primitive-color-success-400);
+  --color-success-500: var(--primitive-color-success-500);
+  --color-success-600: var(--primitive-color-success-600);
+  --color-success-700: var(--primitive-color-success-700);
+  --color-success-800: var(--primitive-color-success-800);
+  --color-success-900: var(--primitive-color-success-900);
+  --color-success-950: var(--primitive-color-success-950);
+
+  --color-warning-50: var(--primitive-color-warning-50);
+  --color-warning-100: var(--primitive-color-warning-100);
+  --color-warning-200: var(--primitive-color-warning-200);
+  --color-warning-300: var(--primitive-color-warning-300);
+  --color-warning-400: var(--primitive-color-warning-400);
+  --color-warning-500: var(--primitive-color-warning-500);
+  --color-warning-600: var(--primitive-color-warning-600);
+  --color-warning-700: var(--primitive-color-warning-700);
+  --color-warning-800: var(--primitive-color-warning-800);
+  --color-warning-900: var(--primitive-color-warning-900);
+  --color-warning-950: var(--primitive-color-warning-950);
+
+  --color-error-50: var(--primitive-color-error-50);
+  --color-error-100: var(--primitive-color-error-100);
+  --color-error-200: var(--primitive-color-error-200);
+  --color-error-300: var(--primitive-color-error-300);
+  --color-error-400: var(--primitive-color-error-400);
+  --color-error-500: var(--primitive-color-error-500);
+  --color-error-600: var(--primitive-color-error-600);
+  --color-error-700: var(--primitive-color-error-700);
+  --color-error-800: var(--primitive-color-error-800);
+  --color-error-900: var(--primitive-color-error-900);
+  --color-error-950: var(--primitive-color-error-950);
+
+  --color-info-50: var(--primitive-color-info-50);
+  --color-info-100: var(--primitive-color-info-100);
+  --color-info-200: var(--primitive-color-info-200);
+  --color-info-300: var(--primitive-color-info-300);
+  --color-info-400: var(--primitive-color-info-400);
+  --color-info-500: var(--primitive-color-info-500);
+  --color-info-600: var(--primitive-color-info-600);
+  --color-info-700: var(--primitive-color-info-700);
+  --color-info-800: var(--primitive-color-info-800);
+  --color-info-900: var(--primitive-color-info-900);
+  --color-info-950: var(--primitive-color-info-950);
+
+  /* ========================================
+     SEMANTIC THEME-AWARE TOKENS
+     ======================================== */
+
+  /* Background Colors */
+  --color-bg-primary: var(--token-bg-primary);
+  --color-bg-secondary: var(--token-bg-secondary);
+  --color-bg-tertiary: var(--token-bg-tertiary);
+  --color-bg-elevated: var(--token-bg-elevated);
+  --color-bg-overlay: var(--token-bg-overlay);
+
+  /* Text Colors */
+  --color-text-primary: var(--token-text-primary);
+  --color-text-secondary: var(--token-text-secondary);
+  --color-text-tertiary: var(--token-text-tertiary);
+  --color-text-muted: var(--token-text-muted);
+  --color-text-inverse: var(--token-text-inverse);
+
+  /* Border Colors */
+  --color-border-default: var(--token-border-default);
+  --color-border-strong: var(--token-border-strong);
+  --color-border-subtle: var(--token-border-subtle);
+
+  /* Focus States */
+  --color-focus-ring: var(--token-focus-ring);
+  --color-focus-ring-offset: var(--token-focus-ring-offset);
+
+  /* ========================================
+     SPACING SCALE TOKENS
+     ======================================== */
+  --spacing-0: var(--space-0);
+  --spacing-px: var(--space-px);
+  --spacing-0-5: var(--space-0-5);
+  --spacing-1: var(--space-1);
+  --spacing-1-5: var(--space-1-5);
+  --spacing-2: var(--space-2);
+  --spacing-2-5: var(--space-2-5);
+  --spacing-3: var(--space-3);
+  --spacing-3-5: var(--space-3-5);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-7: var(--space-7);
+  --spacing-8: var(--space-8);
+  --spacing-9: var(--space-9);
+  --spacing-10: var(--space-10);
+  --spacing-11: var(--space-11);
+  --spacing-12: var(--space-12);
+  --spacing-14: var(--space-14);
+  --spacing-16: var(--space-16);
+  --spacing-20: var(--space-20);
+  --spacing-24: var(--space-24);
+  --spacing-28: var(--space-28);
+  --spacing-32: var(--space-32);
+  --spacing-36: var(--space-36);
+  --spacing-40: var(--space-40);
+  --spacing-44: var(--space-44);
+  --spacing-48: var(--space-48);
+  --spacing-52: var(--space-52);
+  --spacing-56: var(--space-56);
+  --spacing-60: var(--space-60);
+  --spacing-64: var(--space-64);
+  --spacing-72: var(--space-72);
+  --spacing-80: var(--space-80);
+  --spacing-96: var(--space-96);
+
+  /* ========================================
+     BORDER RADIUS TOKENS
+     ======================================== */
+  --radius-none: var(--radius-none);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-4xl: var(--radius-4xl);
+  --radius-full: var(--radius-full);
+
+  /* ========================================
+     SHADOW TOKENS
+     ======================================== */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+  --shadow-inner: var(--shadow-inner);
+
+  /* Colored Shadows */
+  --shadow-primary: var(--shadow-primary);
+  --shadow-secondary: var(--shadow-secondary);
+  --shadow-accent: var(--shadow-accent);
+
+  /* ========================================
+     TYPOGRAPHY TOKENS
+     ======================================== */
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+
+  --font-size-xs: var(--font-size-xs);
+  --font-size-sm: var(--font-size-sm);
+  --font-size-base: var(--font-size-base);
+  --font-size-lg: var(--font-size-lg);
+  --font-size-xl: var(--font-size-xl);
+  --font-size-2xl: var(--font-size-2xl);
+  --font-size-3xl: var(--font-size-3xl);
+  --font-size-4xl: var(--font-size-4xl);
+  --font-size-5xl: var(--font-size-5xl);
+  --font-size-6xl: var(--font-size-6xl);
+  --font-size-7xl: var(--font-size-7xl);
+  --font-size-8xl: var(--font-size-8xl);
+  --font-size-9xl: var(--font-size-9xl);
+
+  /* ========================================
+     TRANSITION TOKENS
+     ======================================== */
+  --transition-fast: var(--transition-fast);
+  --transition-base: var(--transition-base);
+  --transition-slow: var(--transition-slow);
+  --transition-slower: var(--transition-slower);
+}
+
+/* ------------------------------------------
+   Utility Classes
+   ------------------------------------------ */
+@layer utilities {
+  /* Text Gradient Utilities */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
+  }
+
+  .dark .text-gradient {
+    background-image: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+  }
+
+  /* Glassmorphism Utilities */
+  .glass {
+    @apply bg-bg-primary/80 backdrop-blur-xl;
+    border: 1px solid var(--color-border-default);
+  }
+
+  .dark .glass {
+    @apply bg-bg-primary/60;
+  }
+
+  /* Gradient Mesh Background */
+  .gradient-mesh {
+    background:
+      radial-gradient(ellipse at top, var(--color-primary-100), transparent 50%),
+      radial-gradient(ellipse at bottom right, var(--color-secondary-100), transparent 50%),
+      radial-gradient(ellipse at bottom left, var(--color-accent-100), transparent 50%);
+  }
+
+  .dark .gradient-mesh {
+    background:
+      radial-gradient(
+        ellipse at top,
+        rgb(from var(--color-primary-900) r g b / 30%),
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom right,
+        rgb(from var(--color-secondary-900) r g b / 30%),
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom left,
+        rgb(from var(--color-accent-900) r g b / 30%),
+        transparent 50%
+      );
+  }
+
+  /* Container Utilities */
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Safe Area Insets for Notched Devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .safe-area-x {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .safe-area-y {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-all {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Mobile-Optimized Fixed Positioning */
+  .fixed-safe-bottom {
+    position: fixed;
+    bottom: 0;
+    bottom: env(safe-area-inset-bottom);
+    left: 0;
+    right: 0;
+  }
+
+  /* Scrollbar Hide Utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

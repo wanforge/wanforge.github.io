@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO } from '../config/site';
+import { ChangelogHero, ChangelogFeed } from '../components/sections';
+import { changelogEntries, changelogMetadata } from '../data/changelog';
+
+const seo = pageSEO.changelog;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <ChangelogHero
+    client:load
+    title={changelogMetadata.title}
+    description={changelogMetadata.subheading}
+  />
+  <ChangelogFeed client:load entries={changelogEntries} />
+</Layout>

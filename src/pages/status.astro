@@ -1,0 +1,510 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO, contact, company } from '../config/site';
+import { Section, Container } from '../components/ui';
+import {
+  CheckCircle,
+  AlertCircle,
+  Clock,
+  Activity,
+  Server,
+  Database,
+  Globe,
+  Shield,
+  TrendingUp,
+  Calendar,
+  ExternalLink,
+  ArrowRight,
+  Radio,
+  Zap,
+} from 'lucide-react';
+
+const seo = pageSEO.status;
+
+/**
+ * Service status data - all operational for demo
+ */
+const services = [
+  {
+    name: 'API',
+    status: 'operational',
+    uptime: '99.99%',
+    icon: Server,
+    description: 'REST API endpoints and authentication',
+  },
+  {
+    name: 'Dashboard',
+    status: 'operational',
+    uptime: '99.98%',
+    icon: Activity,
+    description: 'Web application and user interface',
+  },
+  {
+    name: 'Database',
+    status: 'operational',
+    uptime: '99.99%',
+    icon: Database,
+    description: 'Primary database and storage systems',
+  },
+  {
+    name: 'Webhooks',
+    status: 'operational',
+    uptime: '99.97%',
+    icon: Zap,
+    description: 'Event delivery and webhook processing',
+  },
+  {
+    name: 'Integrations',
+    status: 'operational',
+    uptime: '99.95%',
+    icon: Globe,
+    description: 'Third-party service integrations',
+  },
+  {
+    name: 'Security',
+    status: 'operational',
+    uptime: '100%',
+    icon: Shield,
+    description: 'Authentication and security services',
+  },
+];
+
+/**
+ * System metrics - demo data
+ */
+const metrics = [
+  {
+    label: 'API Response Time',
+    value: '45ms',
+    trend: 'down',
+    change: '-12%',
+    description: 'Average over last 24 hours',
+  },
+  {
+    label: 'Request Success Rate',
+    value: '99.99%',
+    trend: 'stable',
+    change: '0%',
+    description: 'Successful API requests',
+  },
+  {
+    label: 'Active Users',
+    value: '12.5K',
+    trend: 'up',
+    change: '+8%',
+    description: 'Currently online users',
+  },
+  {
+    label: 'Total Requests',
+    value: '2.4M',
+    trend: 'up',
+    change: '+15%',
+    description: 'Requests in last 24 hours',
+  },
+];
+
+/**
+ * Recent incidents - demo data
+ */
+const incidents = [
+  {
+    date: '2026-02-08',
+    title: 'Intermittent API latency',
+    status: 'resolved',
+    duration: '23 minutes',
+    description: 'Elevated response times due to database connection pool saturation.',
+  },
+  {
+    date: '2026-01-15',
+    title: 'Webhook delivery delays',
+    status: 'resolved',
+    duration: '45 minutes',
+    description: 'Delayed webhook processing due to queue backup.',
+  },
+  {
+    date: '2025-12-22',
+    title: 'Scheduled maintenance',
+    status: 'resolved',
+    duration: '2 hours',
+    description: 'Planned infrastructure upgrade with minimal impact.',
+  },
+];
+
+/**
+ * Get status color based on status
+ */
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'operational':
+      return 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 border-green-200 dark:border-green-800';
+    case 'degraded':
+      return 'text-yellow-600 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-800';
+    case 'outage':
+      return 'text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 border-red-200 dark:border-red-800';
+    case 'maintenance':
+      return 'text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800';
+    default:
+      return 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700';
+  }
+};
+
+/**
+ * Get status icon based on status
+ */
+const getStatusIcon = (status: string) => {
+  switch (status) {
+    case 'operational':
+      return CheckCircle;
+    case 'degraded':
+      return AlertCircle;
+    case 'outage':
+      return AlertCircle;
+    case 'maintenance':
+      return Clock;
+    default:
+      return Activity;
+  }
+};
+
+/**
+ * Format date for display
+ */
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {/* Hero Section */}
+  <Section
+    background="gradient"
+    padding="2xl"
+    className="relative overflow-hidden"
+    aria-label="Status Hero"
+  >
+    <Container size="narrow" className="text-center relative z-10">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-sm font-semibold mb-6 border border-green-200 dark:border-green-800"
+      >
+        <Radio size={16} />
+        <span>All Systems Operational</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-text-primary">
+        System <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400"
+          >Status</span
+        >
+      </h1>
+
+      <p class="text-lg md:text-xl mb-8 text-text-secondary max-w-2xl mx-auto">
+        Real-time status and uptime information for {company.name} services. We continuously monitor our
+        infrastructure to ensure reliable performance.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#services"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
+        >
+          <CheckCircle size={18} />
+          View Services
+        </a>
+        <a
+          href={`mailto:${contact.supportEmail}`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-text-primary bg-bg-primary border border-border-default hover:bg-bg-secondary rounded-lg transition-colors"
+        >
+          Report an Issue
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Overall Status Banner */}
+  <Section background="default" padding="sm" aria-label="Overall Status">
+    <Container>
+      <div
+        class="flex flex-col md:flex-row md:items-center md:justify-between p-6 rounded-2xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800"
+      >
+        <div class="flex items-center gap-4 mb-4 md:mb-0">
+          <div
+            class="w-12 h-12 flex items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400"
+          >
+            <CheckCircle size={24} />
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-text-primary">All Systems Operational</h2>
+            <p class="text-sm text-text-secondary">Last updated: {new Date().toLocaleString()}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">99.99%</div>
+            <div class="text-xs text-text-muted">30-day uptime</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">45ms</div>
+            <div class="text-xs text-text-muted">Avg response</div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Services Status */}
+  <Section id="services" background="muted" padding="xl" aria-label="Service Status">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Service Status</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Current status of all {company.name} services and components.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {
+          services.map((service) => {
+            const StatusIcon = getStatusIcon(service.status);
+            return (
+              <div class="flex flex-col p-6 rounded-2xl bg-bg-primary border border-border-default shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-4">
+                  <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-bg-secondary text-primary-600 dark:text-primary-400">
+                    <service.icon size={24} />
+                  </div>
+                  <div
+                    class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${getStatusColor(service.status)}`}
+                  >
+                    <StatusIcon size={12} />
+                    <span class="capitalize">{service.status}</span>
+                  </div>
+                </div>
+                <h3 class="text-lg font-bold text-text-primary mb-1">{service.name}</h3>
+                <p class="text-sm text-text-secondary mb-4">{service.description}</p>
+                <div class="mt-auto pt-4 border-t border-border-default">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-text-muted">Uptime</span>
+                    <span class="text-sm font-semibold text-text-primary">{service.uptime}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </Container>
+  </Section>
+
+  {/* System Metrics */}
+  <Section background="default" padding="xl" aria-label="System Metrics">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">System Metrics</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Key performance indicators for the past 24 hours.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {
+          metrics.map((metric) => (
+            <div class="flex flex-col p-6 rounded-2xl bg-bg-secondary border border-border-default">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm text-text-muted">{metric.label}</span>
+                <div
+                  class={`flex items-center gap-1 text-xs font-semibold ${
+                    metric.trend === 'up'
+                      ? 'text-green-600 dark:text-green-400'
+                      : metric.trend === 'down'
+                        ? 'text-green-600 dark:text-green-400'
+                        : 'text-text-muted'
+                  }`}
+                >
+                  <TrendingUp size={14} />
+                  {metric.change}
+                </div>
+              </div>
+              <div class="text-3xl font-bold text-text-primary mb-1">{metric.value}</div>
+              <p class="text-xs text-text-muted">{metric.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  {/* Uptime Graph Placeholder */}
+  <Section background="muted" padding="xl" aria-label="Uptime History">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Uptime History</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Service availability over the past 90 days.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="p-6 rounded-2xl bg-bg-primary border border-border-default">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <Calendar size={20} className="text-text-muted" />
+              <span class="text-sm text-text-secondary">Last 90 Days</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded bg-green-500"></div>
+              <span class="text-xs text-text-muted">Operational</span>
+              <div class="w-3 h-3 rounded bg-yellow-500 ml-2"></div>
+              <span class="text-xs text-text-muted">Degraded</span>
+              <div class="w-3 h-3 rounded bg-red-500 ml-2"></div>
+              <span class="text-xs text-text-muted">Outage</span>
+            </div>
+          </div>
+
+          {/* Simplified uptime visualization */}
+          <div class="space-y-4">
+            {
+              services.slice(0, 4).map((service) => (
+                <div class="flex items-center gap-4">
+                  <div class="w-24 text-sm font-medium text-text-primary truncate">
+                    {service.name}
+                  </div>
+                  <div class="flex-1 flex gap-0.5">
+                    {Array.from({ length: 90 }).map((_, i) => {
+                      // Simulate uptime bars - mostly green with occasional yellow
+                      const isYellow = i === 45 || i === 67;
+                      return (
+                        <div
+                          class={`flex-1 h-8 rounded-sm ${isYellow ? 'bg-yellow-500' : 'bg-green-500'} hover:opacity-80 transition-opacity cursor-pointer`}
+                          title={`Day ${i + 1}: ${isYellow ? 'Degraded Performance' : 'Operational'}`}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div class="w-16 text-right text-sm font-semibold text-text-primary">
+                    {service.uptime}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div
+            class="flex items-center justify-between mt-6 pt-4 border-t border-border-default text-xs text-text-muted"
+          >
+            <span>90 days ago</span>
+            <span>60 days ago</span>
+            <span>30 days ago</span>
+            <span>Today</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Incident History */}
+  <Section background="default" padding="xl" aria-label="Incident History">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Incident History</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Recent incidents and their resolution status.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        {
+          incidents.map((incident) => (
+            <div class="flex flex-col p-6 rounded-2xl bg-bg-secondary border border-border-default">
+              <div class="flex items-start justify-between mb-3">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <CheckCircle size={16} className="text-green-600 dark:text-green-400" />
+                    <span class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">
+                      Resolved
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-bold text-text-primary">{incident.title}</h3>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-semibold text-text-primary">
+                    {formatDate(incident.date)}
+                  </div>
+                  <div class="text-xs text-text-muted">Duration: {incident.duration}</div>
+                </div>
+              </div>
+              <p class="text-sm text-text-secondary">{incident.description}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 text-center">
+        <button
+          class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:underline"
+        >
+          View Full History
+          <ArrowRight size={16} />
+        </button>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Subscribe to Updates */}
+  <Section background="primary" padding="xl" aria-label="Subscribe to Updates">
+    <Container size="narrow" className="text-center">
+      <div
+        class="w-16 h-16 flex items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mx-auto mb-6"
+      >
+        <Radio size={32} />
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Subscribe to Updates</h2>
+      <p class="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
+        Get notified about system status, scheduled maintenance, and incident reports via email.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="flex-1 px-4 py-3 rounded-lg border border-border-default bg-bg-primary text-text-primary focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+        />
+        <button
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+        >
+          Subscribe
+        </button>
+      </div>
+      <p class="text-xs text-text-muted mt-4">
+        We'll only send you status updates. Unsubscribe at any time.
+      </p>
+    </Container>
+  </Section>
+
+  {/* External Status Page Link */}
+  <Section background="muted" padding="lg" aria-label="External Status Page">
+    <Container size="narrow">
+      <div
+        class="flex flex-col md:flex-row md:items-center md:justify-between p-6 rounded-2xl bg-bg-primary border border-border-default"
+      >
+        <div class="mb-4 md:mb-0">
+          <h3 class="text-lg font-bold text-text-primary mb-1">Looking for more details?</h3>
+          <p class="text-sm text-text-secondary">
+            Visit our external status page for real-time metrics and detailed incident reports.
+          </p>
+        </div>
+        <a
+          href="https://status.modernsaas.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 hover:bg-primary-100 dark:hover:bg-primary-900/50 rounded-lg transition-colors"
+        >
+          <ExternalLink size={18} />
+          Visit External Status Page
+        </a>
+      </div>
+    </Container>
+  </Section>
+</Layout>

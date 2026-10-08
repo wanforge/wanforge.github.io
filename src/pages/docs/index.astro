@@ -1,0 +1,414 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { pageSEO, contact } from '../../config/site';
+import { ROUTES } from '../../config/paths';
+import { Section, Container } from '../../components/ui';
+import {
+  Book,
+  Code,
+  Lightbulb,
+  Zap,
+  ArrowRight,
+  Search,
+  FileText,
+  Layers,
+  Terminal,
+  Rocket,
+  ChevronRight,
+  ExternalLink,
+} from 'lucide-react';
+import {
+  JavaScriptIcon,
+  PythonIcon,
+  RubyIcon,
+  GoIcon,
+  PhpIcon,
+  JavaIcon,
+} from '../../components/icons/LanguageIcons';
+
+const seo = pageSEO.docs;
+
+/**
+ * Documentation categories for the docs hub
+ */
+const docCategories = [
+  {
+    icon: Rocket,
+    title: 'Quick Start',
+    description: 'Get up and running in minutes with our step-by-step quickstart guide.',
+    href: '#getting-started',
+    color: 'primary',
+  },
+  {
+    icon: Code,
+    title: 'API Reference',
+    description: 'Complete REST API documentation with examples and authentication details.',
+    href: ROUTES.DOCS_API,
+    color: 'secondary',
+    external: false,
+  },
+  {
+    icon: Book,
+    title: 'Guides',
+    description: 'In-depth tutorials and best practices for building with ModernSaaS.',
+    href: '#guides',
+    color: 'accent',
+  },
+  {
+    icon: Layers,
+    title: 'SDKs',
+    description: 'Official SDKs for JavaScript, Python, Ruby, and more.',
+    href: '#sdks',
+    color: 'primary',
+  },
+];
+
+/**
+ * Getting started steps
+ */
+const gettingStartedSteps = [
+  {
+    number: '01',
+    title: 'Create an Account',
+    description: 'Sign up for a free ModernSaaS account to get started. No credit card required.',
+    icon: FileText,
+  },
+  {
+    number: '02',
+    title: 'Generate API Key',
+    description: 'Create an API key from your dashboard to authenticate your requests.',
+    icon: Terminal,
+  },
+  {
+    number: '03',
+    title: 'Make Your First Request',
+    description: 'Use our SDK or make a direct API call to start building with ModernSaaS.',
+    icon: Zap,
+  },
+];
+
+/**
+ * Popular guides
+ */
+const popularGuides = [
+  {
+    title: 'Authentication',
+    description: 'Learn how to authenticate your API requests using API keys and OAuth.',
+    href: ROUTES.DOCS_API,
+  },
+  {
+    title: 'Webhooks',
+    description: 'Set up webhooks to receive real-time notifications for events.',
+    href: '#',
+  },
+  {
+    title: 'Error Handling',
+    description: 'Understand error codes and how to handle them gracefully.',
+    href: '#',
+  },
+  {
+    title: 'Rate Limiting',
+    description: 'Learn about rate limits and how to optimize your API usage.',
+    href: '#',
+  },
+  {
+    title: 'Pagination',
+    description: 'Handle large datasets efficiently with cursor-based pagination.',
+    href: '#',
+  },
+  {
+    title: 'SDK Setup',
+    description: 'Install and configure our official SDKs for your preferred language.',
+    href: '#',
+  },
+];
+
+/**
+ * SDK data
+ */
+const sdkData = [
+  { name: 'JavaScript', version: 'v2.4.0', status: 'stable' },
+  { name: 'Python', version: 'v1.8.2', status: 'stable' },
+  { name: 'Ruby', version: 'v1.3.0', status: 'stable' },
+  { name: 'Go', version: 'v0.9.1', status: 'beta' },
+  { name: 'PHP', version: 'v1.1.0', status: 'stable' },
+  { name: 'Java', version: 'v0.5.0', status: 'beta' },
+];
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {/* Hero Section */}
+  <Section
+    background="gradient"
+    padding="2xl"
+    className="relative overflow-hidden"
+    aria-label="Documentation Hero"
+  >
+    <Container size="narrow" className="text-center relative z-10">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-6 border border-primary-200 dark:border-primary-800"
+      >
+        <Book size={16} />
+        <span>Documentation</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-text-primary">
+        How can we <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400"
+          >help you?</span
+        >
+      </h1>
+
+      <p class="text-lg md:text-xl mb-10 text-text-secondary max-w-2xl mx-auto">
+        Everything you need to integrate, build, and scale with ModernSaaS. Search our docs or
+        explore by topic.
+      </p>
+
+      {/* Search Input */}
+      <div class="relative max-w-2xl mx-auto">
+        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+          <Search className="h-6 w-6 text-gray-400" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search documentation (e.g., 'authentication', 'webhooks')"
+          class="w-full pl-12 pr-4 py-4 rounded-xl border-0 bg-white dark:bg-gray-900 shadow-lg focus:ring-2 focus:ring-primary-500 text-lg"
+        />
+      </div>
+
+      {/* Quick Links */}
+      <div class="flex flex-wrap justify-center gap-3 mt-8">
+        <span class="text-sm text-text-muted">Popular:</span>
+        <a
+          href={ROUTES.DOCS_API}
+          class="text-sm text-primary-600 dark:text-primary-400 hover:underline">API Reference</a
+        >
+        <a
+          href="#getting-started"
+          class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Quick Start</a
+        >
+        <a href="#sdks" class="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+          >SDKs</a
+        >
+        <a href="#guides" class="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+          >Guides</a
+        >
+      </div>
+    </Container>
+  </Section>
+
+  {/* Documentation Categories */}
+  <Section id="categories" background="default" padding="xl" aria-label="Documentation Categories">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          docCategories.map((category) => (
+            <a
+              href={category.href}
+              class="group flex flex-col p-6 rounded-2xl bg-bg-secondary border border-border-default hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all duration-200"
+            >
+              <div class="flex items-start gap-4">
+                <div
+                  class={`w-12 h-12 flex items-center justify-center rounded-xl bg-${category.color}-100 dark:bg-${category.color}-900/30 text-${category.color}-600 dark:text-${category.color}-400 flex-shrink-0`}
+                >
+                  <category.icon size={24} />
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2">
+                    <h3 class="text-xl font-bold text-text-primary group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                      {category.title}
+                    </h3>
+                    {category.external && <ExternalLink size={16} className="text-text-muted" />}
+                  </div>
+                  <p class="text-text-secondary">{category.description}</p>
+                  <div class="flex items-center gap-1 mt-4 text-primary-600 dark:text-primary-400 font-semibold text-sm group-hover:gap-2 transition-all">
+                    <span>Learn more</span>
+                    <ChevronRight size={16} />
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  {/* Getting Started Section */}
+  <Section id="getting-started" background="muted" padding="xl" aria-label="Getting Started Guide">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Getting Started</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Follow these simple steps to start building with ModernSaaS in minutes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {
+          gettingStartedSteps.map((step, index) => (
+            <div class="relative">
+              {/* Connector line */}
+              {index < gettingStartedSteps.length - 1 && (
+                <div class="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-primary-300 to-transparent dark:from-primary-700" />
+              )}
+
+              <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-bg-primary border border-border-default shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-16 h-16 flex items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mb-4">
+                  <step.icon size={28} />
+                </div>
+                <span class="text-sm font-bold text-primary-600 dark:text-primary-400 mb-2">
+                  Step {step.number}
+                </span>
+                <h3 class="text-lg font-bold text-text-primary mb-2">{step.title}</h3>
+                <p class="text-sm text-text-secondary">{step.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href={ROUTES.DOCS_API}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+        >
+          View API Reference
+          <ArrowRight size={18} />
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Popular Guides Section */}
+  <Section id="guides" background="default" padding="xl" aria-label="Popular Guides">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Popular Guides</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Explore our most-read guides and tutorials to level up your integration.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {
+          popularGuides.map((guide) => (
+            <a
+              href={guide.href}
+              class="group flex flex-col p-6 rounded-xl bg-bg-secondary border border-border-default hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-md transition-all duration-200"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
+                  <Lightbulb size={20} />
+                </div>
+                <h3 class="text-lg font-bold text-text-primary group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  {guide.title}
+                </h3>
+              </div>
+              <p class="text-sm text-text-secondary flex-1">{guide.description}</p>
+              <div class="flex items-center gap-1 mt-4 text-primary-600 dark:text-primary-400 font-semibold text-sm">
+                <span>Read guide</span>
+                <ChevronRight size={16} />
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  {/* SDKs Section */}
+  <Section id="sdks" background="muted" padding="xl" aria-label="SDKs and Libraries">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Official SDKs</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          Build faster with our official SDKs for your favorite programming languages.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
+        {
+          sdkData.map((sdk) => (
+            <div class="flex flex-col items-center p-4 rounded-xl bg-bg-primary border border-border-default hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-md transition-all duration-200 cursor-pointer group">
+              <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mb-3 group-hover:scale-110 transition-transform">
+                {sdk.name === 'JavaScript' && <JavaScriptIcon size={24} />}
+                {sdk.name === 'Python' && <PythonIcon size={24} />}
+                {sdk.name === 'Ruby' && <RubyIcon size={24} />}
+                {sdk.name === 'Go' && <GoIcon size={24} />}
+                {sdk.name === 'PHP' && <PhpIcon size={24} />}
+                {sdk.name === 'Java' && <JavaIcon size={24} />}
+              </div>
+              <span class="font-semibold text-text-primary text-sm">{sdk.name}</span>
+              <span class="text-xs text-text-muted mt-1">{sdk.version}</span>
+              {sdk.status === 'beta' && (
+                <span class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs font-semibold">
+                  Beta
+                </span>
+              )}
+              {sdk.status === 'stable' && (
+                <span class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-semibold">
+                  Stable
+                </span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 text-center">
+        <p class="text-sm text-text-muted">
+          Don't see your language? Check our <a
+            href={ROUTES.DOCS_API}
+            class="text-primary-600 dark:text-primary-400 hover:underline">API Reference</a
+          > for direct HTTP integration.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Need Help CTA */}
+  <Section background="primary" padding="xl" aria-label="Need Help">
+    <Container size="narrow" className="text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Need more help?</h2>
+      <p class="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
+        Can't find what you're looking for? Our support team is here to help you every step of the
+        way.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={ROUTES.SUPPORT}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+        >
+          Visit Help Center
+          <ArrowRight size={18} />
+        </a>
+        <a
+          href={`mailto:${contact.supportEmail}`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-text-primary bg-bg-primary border border-border-default hover:bg-bg-secondary rounded-lg transition-colors"
+        >
+          Contact Support
+        </a>
+      </div>
+    </Container>
+  </Section>
+</Layout>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (href && href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }
+    });
+  });
+</script>

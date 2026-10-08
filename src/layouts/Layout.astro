@@ -1,0 +1,238 @@
+---
+import '../styles/globals.css';
+import { ClientRouter } from 'astro:transitions';
+import { getThemeScript } from '../components/ThemeProvider';
+import { ClientHeader } from '../components/ClientHeader';
+import { ClientMinimalHeader } from '../components/ClientMinimalHeader';
+import { Footer, MinimalFooter } from '../components/layout/Footer';
+import { Toaster } from '../components/ui/Toast';
+import {
+  OrganizationSchema,
+  WebSiteSchema,
+  ProductSchema,
+  BreadcrumbSchema,
+  MetaTags,
+  type BreadcrumbItem,
+} from '../components/seo';
+import { ROUTES, getAssetPath } from '../config/paths';
+
+interface PreloadImage {
+  href: string;
+  as?: string;
+  type?: string;
+  imagesrcset?: string;
+  imagesizes?: string;
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  headerVariant?: 'default' | 'minimal' | 'none';
+  footerVariant?: 'default' | 'minimal' | 'none';
+  crumbs?: BreadcrumbItem[];
+  ogType?: 'website' | 'article' | 'profile';
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  robots?: string;
+  preloadImages?: PreloadImage[];
+  transitionAnimate?: 'fade' | 'slide' | 'none';
+}
+
+const {
+  title,
+  description = 'A production-ready, visually stunning SaaS startup landing page template',
+  headerVariant = 'default',
+  footerVariant = 'default',
+  crumbs,
+  ogType,
+  ogImage,
+  twitterCard,
+  robots,
+  preloadImages = [],
+  transitionAnimate = 'fade',
+} = Astro.props as Props;
+
+// Auto-generate crumbs if not provided
+const currentPath = Astro.url.pathname;
+const pathSegments = currentPath.split('/').filter(Boolean);
+
+const defaultCrumbs: BreadcrumbItem[] = [{ name: 'Home', item: ROUTES.HOME }];
+
+pathSegments.forEach((segment, index) => {
+  const url = `/${pathSegments.slice(0, index + 1).join('/')}/`;
+  const name = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
+  defaultCrumbs.push({ name, item: url });
+});
+
+const finalCrumbs = crumbs || defaultCrumbs;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <slot name="head" />
+    <link rel="icon" type="image/svg+xml" href={getAssetPath('favicon.svg')} />
+    <link rel="icon" href={getAssetPath('favicon.ico')} />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload critical images -->
+    {
+      preloadImages.map((image) => (
+        <link
+          rel="preload"
+          href={image.href}
+          as={image.as || 'image'}
+          type={image.type}
+          imagesrcset={image.imagesrcset}
+          imagesizes={image.imagesizes}
+          fetchpriority={image.fetchpriority}
+        />
+      ))
+    }
+
+    <!-- SEO Meta Tags -->
+    <MetaTags
+      title={title}
+      description={description}
+      pathname={currentPath}
+      ogType={ogType}
+      ogImage={ogImage}
+      twitterCard={twitterCard}
+      robots={robots}
+    />
+
+    <!-- SEO Schemas -->
+    <OrganizationSchema />
+    <WebSiteSchema />
+    <ProductSchema />
+    <BreadcrumbSchema crumbs={finalCrumbs} />
+
+    <!-- Theme script to prevent flash of wrong theme -->
+    <script is:inline set:html={getThemeScript('system')} />
+
+    <!-- Theme persistence during Astro View Transitions -->
+    <script>
+      // Reapply theme after each page transition to prevent flash of wrong theme
+      document.addEventListener('astro:after-swap', () => {
+        try {
+          const stored = localStorage.getItem('theme');
+          let theme = 'light';
+
+          if (stored === 'light' || stored === 'dark') {
+            theme = stored;
+          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark';
+          }
+
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.colorScheme = theme;
+
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch {
+          // Silent fail if localStorage is not available
+        }
+      });
+    </script>
+
+    <!-- Redirect handler for SPA routing on GitHub Pages -->
+    <script>
+      import { handleRedirect } from '../utils/routing';
+      handleRedirect();
+    </script>
+
+    <!-- Page Transitions -->
+    <ClientRouter />
+
+    <style is:global>
+      /* 
+        Optimized Page Transitions
+        - Reduced animation duration for faster perceived performance
+        - Simplified animations to reduce GPU load
+        - Added will-change hints for compositor optimization
+      */
+      ::view-transition-old(root) {
+        animation: 150ms ease-out both fade-out;
+        will-change: opacity;
+      }
+
+      ::view-transition-new(root) {
+        animation: 250ms cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
+        will-change: opacity, transform;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
+      @keyframes fade-out {
+        to {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+      }
+
+      /* Respect reduced motion - disable animations entirely */
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation: none !important;
+        }
+      }
+
+      /* Optimize performance during transitions - disable heavy effects */
+      ::view-transition-old(root) *,
+      ::view-transition-new(root) * {
+        animation-play-state: paused !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-bg-primary text-text-primary antialiased">
+    <!-- Skip to content link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 transition-all"
+    >
+      Skip to content
+    </a>
+
+    {headerVariant === 'default' && <ClientHeader client:load transition:persist />}
+    {headerVariant === 'minimal' && <ClientMinimalHeader client:load transition:persist />}
+
+    <main
+      id="main-content"
+      class="outline-none"
+      tabindex="-1"
+      role="main"
+      aria-label="Main content"
+      transition:animate={transitionAnimate}
+    >
+      <slot />
+    </main>
+
+    {footerVariant === 'default' && <Footer client:load transition:persist />}
+    {footerVariant === 'minimal' && <MinimalFooter client:load transition:persist />}
+
+    <Toaster client:load />
+  </body>
+</html>

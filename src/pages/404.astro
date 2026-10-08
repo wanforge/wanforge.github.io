@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Container } from '../components/ui/Container';
+import { DemoLinkButton } from '../components/ui/DemoLink';
+import { Search, Home, ArrowLeft } from 'lucide-react';
+import { Input } from '../components/ui/Input';
+import { ROUTES } from '../config/paths';
+
+/**
+ * 404 Page Component
+ *
+ * Displays a helpful error message when a page is not found.
+ * Includes a search input and navigation links to get users back on track.
+ */
+---
+
+<Layout title="404 - Page Not Found">
+  {/* SPA redirect for GitHub Pages: redirects valid routes before page renders */}
+  <script is:inline slot="head">
+    // Single Page Apps for GitHub Pages
+    // https://github.com/rafgraph/spa-github-pages
+
+    (function () {
+      // Get the repository name from the path
+      const pathSegments = window.location.pathname.split('/');
+      const repoName = pathSegments[1]; // First segment after domain
+
+      // Check if we're on a project page (subdirectory)
+      // On GitHub Pages, hostname is user.github.io
+      const isProjectPage =
+        window.location.hostname.includes('github.io') &&
+        pathSegments.length > 1 &&
+        repoName &&
+        !repoName.includes('.');
+
+      // Build the redirect URL
+      let redirectUrl;
+      if (isProjectPage) {
+        // Project page: /repo-name/path -> /repo-name/?redirect=/path
+        const remainingPath = pathSegments.slice(2).join('/');
+        redirectUrl = '/' + repoName + '/?redirect=/' + remainingPath + window.location.hash;
+      } else {
+        // Root page: /path -> /?redirect=/path
+        redirectUrl = '/?redirect=' + window.location.pathname + window.location.hash;
+      }
+
+      // Preserve query parameters
+      if (window.location.search) {
+        redirectUrl += '&' + window.location.search.slice(1);
+      }
+
+      window.location.replace(redirectUrl);
+    })();
+  </script>
+  <Container size="narrow" className="py-20 md:py-32 text-center">
+    <div class="space-y-8">
+      {/* 404 Error Code */}
+      <div class="relative">
+        <h1
+          class="text-[8rem] sm:text-[12rem] md:text-[16rem] font-black text-primary-500/10 select-none leading-none"
+        >
+          404
+        </h1>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <h2 class="text-4xl md:text-6xl font-bold text-text-primary">Page Not Found</h2>
+        </div>
+      </div>
+
+      <p class="text-xl text-text-secondary max-w-lg mx-auto">
+        Sorry, we couldn't find the page you're looking for. It might have been moved, renamed, or
+        perhaps it never existed.
+      </p>
+
+      {/* Search Input - Mock functionality for template */}
+      <div class="max-w-md mx-auto py-8">
+        <div class="relative">
+          <Input type="text" placeholder="Search our site..." className="pl-12" id="search-404" />
+          <Search
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary"
+            size={20}
+          />
+        </div>
+        <p class="mt-2 text-sm text-text-tertiary">
+          Try searching for keywords like "pricing", "features", or "blog".
+        </p>
+      </div>
+
+      {/* Navigation Options */}
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <DemoLinkButton href={ROUTES.HOME} variant="primary" size="lg" className="w-full sm:w-auto">
+          <Home className="mr-2" size={20} />
+          Back to Home
+        </DemoLinkButton>
+        <button
+          onclick="window.history.back()"
+          class="w-full sm:w-auto inline-flex items-center justify-center h-12 px-6 rounded-lg font-medium text-text-primary hover:bg-bg-secondary transition-colors border border-border-default"
+        >
+          <ArrowLeft className="mr-2" size={20} />
+          Go Back
+        </button>
+      </div>
+
+      {/* Quick Links */}
+      <div class="pt-12 border-t border-border-default">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-text-tertiary mb-6">
+          Popular Pages
+        </h3>
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+          <a
+            href={ROUTES.FEATURES}
+            class="text-text-secondary hover:text-primary-600 transition-colors">Features</a
+          >
+          <a
+            href={ROUTES.PRICING}
+            class="text-text-secondary hover:text-primary-600 transition-colors">Pricing</a
+          >
+          <a href={ROUTES.BLOG} class="text-text-secondary hover:text-primary-600 transition-colors"
+            >Blog</a
+          >
+          <a
+            href={ROUTES.CONTACT}
+            class="text-text-secondary hover:text-primary-600 transition-colors">Contact</a
+          >
+          <a
+            href={ROUTES.SUPPORT}
+            class="text-text-secondary hover:text-primary-600 transition-colors">Help Center</a
+          >
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>

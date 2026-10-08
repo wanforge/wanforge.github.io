@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/auth pages
+Disallow: /login/
+Disallow: /signup/
+
+# Link to sitemap
+Sitemap: https://masurii.github.io/ModernSaaS-LandingPage-Template/sitemap-index.xml

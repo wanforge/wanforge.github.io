@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PricingPageContent } from '../components/pricing/PricingPageContent';
+import { pricingMetadata } from '../data/pricing';
+
+/**
+ * Pricing Page
+ *
+ * Comprehensive pricing page featuring:
+ * - Billing period toggle (Monthly/Annual)
+ * - Comparison grid of all pricing tiers
+ * - Money-back guarantee trust signal
+ * - Detailed feature comparison table
+ * - Pricing-specific FAQs
+ * - Enterprise contact section
+ */
+const { title, description } = pricingMetadata;
+---
+
+<Layout title={title} description={description}>
+  <PricingPageContent client:load />
+</Layout>

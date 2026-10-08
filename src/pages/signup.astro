@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignupForm from '../components/forms/SignupForm';
+import { GradientBackground } from '../components/ui/GradientBackground';
+import { pageSEO } from '../config/site';
+
+const seo = pageSEO.signup || {
+  title: 'Sign Up',
+  description: 'Create your account and start building with ModernSaaS today.',
+};
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  headerVariant="minimal"
+  footerVariant="minimal"
+>
+  <div
+    class="relative flex flex-col items-center justify-center min-h-[80vh] px-4 py-12 sm:px-6 lg:px-8"
+  >
+    {/* Background */}
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <GradientBackground variant="soft" intensity={0.5} client:load />
+    </div>
+
+    <SignupForm client:load />
+  </div>
+</Layout>

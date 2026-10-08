@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { pageSEO, company } from '../config/site';
+import { LegalHero, LegalContent, FinalCTA } from '../components/sections';
+import { privacyData } from '../data/legal';
+
+const seo = pageSEO.privacy;
+---
+
+<Layout title={`${seo.title} | ${company.name}`} description={seo.description}>
+  <LegalHero title={privacyData.title} lastUpdated={privacyData.lastUpdated} />
+
+  <LegalContent sections={privacyData.sections} />
+
+  <FinalCTA client:load />
+</Layout>
