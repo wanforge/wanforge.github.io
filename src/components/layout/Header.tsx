@@ -7,6 +7,7 @@ import { MobileMenuButton, MobileNavigation } from '../ui/MobileNavigation';
 import { company, siteNavigation } from '../../config/site';
 import { ROUTES, isActiveRoute, resolveHref } from '../../config/paths';
 import { useReducedMotion } from '../../utils/reducedMotion';
+import { type Locale, siteContent } from '../../data/wanforge';
 
 /**
  * Props for the Header component
@@ -22,6 +23,8 @@ export interface HeaderProps {
   ctaHref?: string;
   /** Callback when CTA is clicked */
   onCtaClick?: () => void;
+  /** Optional locale for WanForge bilingual mode */
+  locale?: Locale;
 }
 
 /**
@@ -56,14 +59,38 @@ export interface HeaderProps {
 export function Header({
   className = '',
   showCta = true,
-  ctaText = 'Get Started',
-  ctaHref = ROUTES.SIGNUP,
+  ctaText,
+  ctaHref,
   onCtaClick,
+  locale,
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
   const { prefersReducedMotion } = useReducedMotion();
+
+  const isWanforge = locale !== undefined;
+  const brandName = isWanforge ? 'WANFORGE' : company.name;
+  const brandHref = isWanforge ? (locale === 'en' ? '/en/' : '/') : resolveHref(ROUTES.HOME);
+
+  const navItems = isWanforge
+    ? locale === 'id'
+      ? [
+          { label: siteContent.id.nav[0], href: '#services' },
+          { label: siteContent.id.nav[1], href: '#capabilities' },
+          { label: siteContent.id.nav[2], href: '#contact' },
+        ]
+      : [
+          { label: siteContent.en.nav[0], href: '/en/#services' },
+          { label: siteContent.en.nav[1], href: '/en/#capabilities' },
+          { label: siteContent.en.nav[2], href: '/en/#contact' },
+        ]
+    : siteNavigation.main;
+
+  const resolvedCtaText =
+    ctaText ?? (isWanforge ? siteContent[locale].primaryCta.label : 'Get Started');
+  const resolvedCtaHref =
+    ctaHref ?? (isWanforge ? siteContent[locale].primaryCta.href : ROUTES.SIGNUP);
 
   // Handle scroll effect for background transition
   const handleScroll = useCallback(() => {
@@ -121,15 +148,15 @@ export function Header({
           >
             {/* Logo */}
             <a
-              href={resolveHref(ROUTES.HOME)}
+              href={brandHref}
               className="flex items-center gap-2 text-text-primary hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 rounded-lg"
-              aria-label={`${company.name} - Home`}
+              aria-label={`${brandName} - Home`}
             >
               <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center shadow-sm">
                 <Zap className="w-5 h-5 lg:w-6 lg:h-6 text-white" aria-hidden="true" />
               </div>
               <span className="text-lg lg:text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-text-primary to-text-primary/70">
-                {company.name}
+                {brandName}
               </span>
             </a>
 
@@ -139,7 +166,7 @@ export function Header({
               role="navigation"
               aria-label="Main navigation"
             >
-              {siteNavigation.main.map((item) => {
+              {navItems.map((item) => {
                 const active = isActiveRoute(item.href, currentPath);
                 return (
                   <a
@@ -183,13 +210,24 @@ export function Header({
 
             {/* Right side actions */}
             <div className="flex items-center gap-2 lg:gap-4">
+              {/* Language Switcher */}
+              {isWanforge && (
+                <a
+                  href={locale === 'id' ? '/en/' : '/'}
+                  className="px-2.5 py-1 text-xs font-semibold rounded-lg border border-border-default hover:bg-bg-secondary text-text-secondary hover:text-text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
+                  aria-label={locale === 'id' ? 'Switch to English' : 'Beralih ke Bahasa Indonesia'}
+                >
+                  {locale === 'id' ? 'EN' : 'ID'}
+                </a>
+              )}
+
               {/* Theme Toggle - Desktop */}
               <ThemeToggle aria-label="Toggle theme" className="hidden sm:flex" />
 
               {/* CTA Button - Desktop */}
               {showCta && (
                 <Link
-                  href={ctaHref}
+                  href={resolvedCtaHref}
                   variant="button"
                   size="md"
                   className="hidden md:inline-flex"
@@ -201,7 +239,7 @@ export function Header({
                     }
                   }}
                 >
-                  {ctaText}
+                  {resolvedCtaText}
                 </Link>
               )}
 
@@ -221,9 +259,10 @@ export function Header({
         isOpen={isMobileMenuOpen}
         onClose={closeMobileMenu}
         showCta={showCta}
-        ctaText={ctaText}
-        ctaHref={ctaHref}
+        ctaText={resolvedCtaText}
+        ctaHref={resolvedCtaHref}
         currentPath={currentPath}
+        locale={locale}
         {...(onCtaClick ? { onCtaClick } : {})}
       />
     </>

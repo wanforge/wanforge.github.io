@@ -10,6 +10,7 @@ import {
 import { company, featureFlags, footer, siteNavigation, social } from '../../config/site';
 import { ROUTES, resolveHref } from '../../config/paths';
 import { Button } from '../ui/Button';
+import { type Locale, siteContent } from '../../data/wanforge';
 
 /**
  * Props for the Footer component
@@ -19,6 +20,8 @@ export interface FooterProps {
   className?: string;
   /** Whether to show the newsletter section */
   showNewsletter?: boolean;
+  /** Optional locale for WanForge bilingual mode */
+  locale?: Locale;
 }
 
 /**
@@ -163,9 +166,97 @@ function NewsletterSignup({ onSubmit }: { onSubmit?: (email: string) => void }) 
  * <Footer showNewsletter={false} onDemoLinkClick={(type) => console.log(type)} />
  * ```
  */
-export function Footer({ className = '', showNewsletter = true }: FooterProps) {
+export function Footer({ className = '', showNewsletter = true, locale }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const copyrightText = footer.copyright.replace('{year}', String(currentYear));
+
+  if (locale) {
+    const content = siteContent[locale];
+    const isId = locale === 'id';
+    return (
+      <footer
+        className={`bg-bg-secondary border-t border-border-default ${className}`}
+        role="contentinfo"
+        aria-label="Site footer"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            <div className="md:col-span-2">
+              <a
+                href={isId ? '/' : '/en/'}
+                className="inline-flex items-center gap-2 text-text-primary hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 rounded-lg mb-4"
+                aria-label="WANFORGE - Home"
+              >
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-white" aria-hidden="true" />
+                </div>
+                <span className="text-lg font-bold tracking-tight">WANFORGE</span>
+              </a>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4 max-w-lg">
+                {content.hero.description}
+              </p>
+              <div className="flex items-center gap-3">
+                <SocialLink
+                  href={content.secondaryCta.href}
+                  label="WANFORGE on GitHub"
+                  icon={<GithubIcon className="w-4 h-4" />}
+                />
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-text-primary mb-4 text-sm">
+                {isId ? 'Navigasi' : 'Navigation'}
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <FooterLink href={isId ? '#services' : '/en/#services'}>
+                    {content.nav[0]}
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={isId ? '#capabilities' : '/en/#capabilities'}>
+                    {content.nav[1]}
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={isId ? '#contact' : '/en/#contact'}>
+                    {content.nav[2]}
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={content.primaryCta.href} external>
+                    WhatsApp
+                  </FooterLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-border-default">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-text-tertiary">
+                <span>© {currentYear} WANFORGE</span>
+                <span className="hidden sm:inline">·</span>
+                <span>{content.footer}</span>
+                <span className="hidden sm:inline">·</span>
+                <a
+                  href="https://github.com/MasuRii/ModernSaaS-LandingPage-Template"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-text-secondary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 rounded"
+                >
+                  Template by MasuRii (MIT)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer

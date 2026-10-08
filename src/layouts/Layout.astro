@@ -28,6 +28,7 @@ interface PreloadImage {
 interface Props {
   title: string;
   description?: string;
+  locale?: 'id' | 'en';
   headerVariant?: 'default' | 'minimal' | 'none';
   footerVariant?: 'default' | 'minimal' | 'none';
   crumbs?: BreadcrumbItem[];
@@ -42,6 +43,7 @@ interface Props {
 const {
   title,
   description = 'A production-ready, visually stunning SaaS startup landing page template',
+  locale = 'id',
   headerVariant = 'default',
   footerVariant = 'default',
   crumbs,
@@ -69,7 +71,7 @@ const finalCrumbs = crumbs || defaultCrumbs;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <slot name="head" />
@@ -216,7 +218,7 @@ const finalCrumbs = crumbs || defaultCrumbs;
       Skip to content
     </a>
 
-    {headerVariant === 'default' && <ClientHeader client:load transition:persist />}
+    {headerVariant === 'default' && <ClientHeader client:load transition:persist locale={locale} />}
     {headerVariant === 'minimal' && <ClientMinimalHeader client:load transition:persist />}
 
     <main
@@ -230,7 +232,7 @@ const finalCrumbs = crumbs || defaultCrumbs;
       <slot />
     </main>
 
-    {footerVariant === 'default' && <Footer client:load transition:persist />}
+    {footerVariant === 'default' && <Footer client:load transition:persist locale={locale} />}
     {footerVariant === 'minimal' && <MinimalFooter client:load transition:persist />}
 
     <Toaster client:load />

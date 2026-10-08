@@ -5,6 +5,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { siteNavigation } from '../../config/site';
 import { ROUTES, isActiveRoute, resolveHref } from '../../config/paths';
 import { useReducedMotion } from '../../utils/reducedMotion';
+import { type Locale, siteContent } from '../../data/wanforge';
 
 /**
  * Props for the MobileNavigation component
@@ -24,6 +25,8 @@ export interface MobileNavigationProps {
   onCtaClick?: () => void;
   /** The current page path */
   currentPath?: string;
+  /** Optional locale for WanForge bilingual mode */
+  locale?: Locale;
 }
 
 /**
@@ -140,10 +143,26 @@ export function MobileNavigation({
   ctaHref = ROUTES.SIGNUP,
   onCtaClick,
   currentPath = '',
+  locale,
 }: MobileNavigationProps): React.ReactElement {
   const containerRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { prefersReducedMotion } = useReducedMotion();
+
+  const isWanforge = locale !== undefined;
+  const navItems = isWanforge
+    ? locale === 'id'
+      ? [
+          { label: siteContent.id.nav[0], href: '#services' },
+          { label: siteContent.id.nav[1], href: '#capabilities' },
+          { label: siteContent.id.nav[2], href: '#contact' },
+        ]
+      : [
+          { label: siteContent.en.nav[0], href: '/en/#services' },
+          { label: siteContent.en.nav[1], href: '/en/#capabilities' },
+          { label: siteContent.en.nav[2], href: '/en/#contact' },
+        ]
+    : siteNavigation.main;
 
   // Apply focus trap
   useFocusTrap(containerRef as React.RefObject<HTMLElement | null>, isOpen, onClose);
@@ -231,7 +250,7 @@ export function MobileNavigation({
               aria-label="Mobile navigation"
             >
               <ul className="space-y-2">
-                {siteNavigation.main.map((item, index) => {
+                {navItems.map((item, index) => {
                   const active = isActiveRoute(item.href, currentPath);
                   return (
                     <motion.li
@@ -259,6 +278,22 @@ export function MobileNavigation({
 
             {/* Footer with theme toggle and CTA */}
             <div className="border-t border-border-default/50 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] space-y-6 bg-bg-secondary/30">
+              {/* Language switcher for WanForge */}
+              {isWanforge && (
+                <div className="flex items-center justify-between px-2">
+                  <span className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+                    {locale === 'id' ? 'Bahasa' : 'Language'}
+                  </span>
+                  <a
+                    href={locale === 'id' ? '/en/' : '/'}
+                    onClick={handleNavClick}
+                    className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-border-default hover:bg-bg-secondary text-text-secondary hover:text-text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
+                  >
+                    {locale === 'id' ? 'English (EN)' : 'Bahasa Indonesia (ID)'}
+                  </a>
+                </div>
+              )}
+
               {/* Theme toggle */}
               <div className="flex items-center justify-between px-2">
                 <span className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
