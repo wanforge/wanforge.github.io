@@ -58,10 +58,7 @@ export const CompanyStory: React.FC<CompanyStoryProps> = ({ className }) => {
                 Our Mission
               </h2>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-primary mb-8 leading-[1.1]">
-                Empowering teams to{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
-                  achieve more
-                </span>
+                {company.mission}
               </h1>
               <p className="text-lg md:text-xl text-text-muted leading-relaxed max-w-3xl mx-auto">
                 {company.fullDescription}

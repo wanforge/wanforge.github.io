@@ -146,7 +146,7 @@ export function useAnimation(
     }
 
     return () => {
-      // Preserve final state on unmount instead of stopping
+      animationRef.current?.stop();
       applyFinalState();
     };
   }, [
