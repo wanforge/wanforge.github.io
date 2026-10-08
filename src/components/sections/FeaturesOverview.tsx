@@ -24,6 +24,7 @@ import { BentoGrid, BentoGridItem, Container, Section } from '@/components/ui';
 import { featuresOverview } from '@/data/features';
 import { PRESETS, STAGGER } from '@/config/animation';
 import { cn } from '@/utils/cn';
+import { type Locale } from '@/data/wanforge';
 
 /**
  * Map of icon names to Lucide components
@@ -57,6 +58,10 @@ export interface FeaturesOverviewProps {
    * Additional CSS classes to apply
    */
   className?: string;
+  /**
+   * Optional locale for WanForge mode
+   */
+  locale?: Locale;
 }
 
 /**
@@ -69,10 +74,123 @@ export interface FeaturesOverviewProps {
  * - Theme-aware styling
  * - Integrated with placeholder feature data
  */
-export const FeaturesOverview: React.FC<FeaturesOverviewProps> = ({ className }) => {
+export const FeaturesOverview: React.FC<FeaturesOverviewProps> = ({ className, locale }) => {
+  const isWanforge = locale !== undefined;
+
+  const heading = isWanforge ? (
+    locale === 'id' ? (
+      <>
+        Solusi Rekayasa Digital untuk{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+          Kebutuhan Nyata
+        </span>
+      </>
+    ) : (
+      <>
+        Digital Engineering for{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+          Real Operations
+        </span>
+      </>
+    )
+  ) : (
+    <>
+      Everything you need to{' '}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+        scale your business
+      </span>
+    </>
+  );
+
+  const subheading = isWanforge
+    ? locale === 'id'
+      ? 'Platform lengkap dari portal bisnis, SIMRS klinis, koperasi ERP, cloud deployment, hingga sistem otomasi AI.'
+      : 'Comprehensive systems from operational portals, clinical EMRs, and cooperative ERPs to cloud deployment and AI automation.'
+    : 'Our comprehensive suite of tools is designed to help you automate workflows, secure your data, and gain actionable insights at every step.';
+
+  const items = isWanforge
+    ? locale === 'id'
+      ? [
+          {
+            id: 'wf-1',
+            title: 'Web & Aplikasi',
+            description: 'Platform web responsif, portal kepatuhan legal, SIMRS klinis, dan dashboard operasional cepat.',
+            icon: 'Globe',
+          },
+          {
+            id: 'wf-2',
+            title: 'Cloud & DevOps',
+            description: 'Deployment nir-downtime, server Linux terkelola, backup data terjadwal, dan alur rilis disiplin.',
+            icon: 'Cloud',
+          },
+          {
+            id: 'wf-3',
+            title: 'AI & Otomasi',
+            description: 'Sistem kecerdasan buatan, MCP tooling kustom, integrasi API, dan alur kerja agen otonom.',
+            icon: 'Sparkles',
+          },
+          {
+            id: 'wf-4',
+            title: 'IoT & Security',
+            description: 'Integrasi telemetri perangkat keras, validasi checkpoint patroli, dan audit keamanan berizin.',
+            icon: 'Shield',
+          },
+          {
+            id: 'wf-5',
+            title: 'Database & POS',
+            description: 'Sistem kasir dan inventaris lokal-pertama, katalog produk terverifikasi, dan invoice offline.',
+            icon: 'Database',
+          },
+          {
+            id: 'wf-6',
+            title: 'Arsitektur Andal',
+            description: 'Pendekatan zero fluff, performa maksimal, dan ketahanan tinggi di lingkungan produksi sesungguhnya.',
+            icon: 'Zap',
+          },
+        ]
+      : [
+          {
+            id: 'wf-1',
+            title: 'Web & Applications',
+            description: 'Responsive web platforms, legal compliance portals, clinical EMRs, and operational dashboards.',
+            icon: 'Globe',
+          },
+          {
+            id: 'wf-2',
+            title: 'Cloud & DevOps',
+            description: 'Zero-downtime deployments, managed Linux servers, automated backups, and disciplined releases.',
+            icon: 'Cloud',
+          },
+          {
+            id: 'wf-3',
+            title: 'AI & Automation',
+            description: 'Custom MCP server ecosystems, API integrations, and autonomous agent engineering workflows.',
+            icon: 'Sparkles',
+          },
+          {
+            id: 'wf-4',
+            title: 'IoT & Security',
+            description: 'Hardware telemetry integration, verified patrol checkpoints, and authorized pentesting.',
+            icon: 'Shield',
+          },
+          {
+            id: 'wf-5',
+            title: 'Database & POS',
+            description: 'Local-first point-of-sale systems, verified product catalog, and offline-resilient invoicing.',
+            icon: 'Database',
+          },
+          {
+            id: 'wf-6',
+            title: 'Engineered Reliability',
+            description: 'Zero-fluff engineering, minimal footprint, and maximal resilience in mission-critical environments.',
+            icon: 'Zap',
+          },
+        ]
+    : featuresOverview;
+
   return (
     <Section
-      id="features"
+      id={isWanforge ? 'services' : 'features'}
       className={cn('py-20 lg:py-32', className)}
       background="muted"
       aria-label="Features Overview"
@@ -90,14 +208,10 @@ export const FeaturesOverview: React.FC<FeaturesOverviewProps> = ({ className })
             style={{ opacity: 1 }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary mb-4">
-              Everything you need to{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
-                scale your business
-              </span>
+              {heading}
             </h2>
             <p className="text-lg md:text-xl text-text-muted max-w-[800px] mx-auto leading-relaxed">
-              Our comprehensive suite of tools is designed to help you automate workflows, secure
-              your data, and gain actionable insights at every step.
+              {subheading}
             </p>
           </motion.div>
         </div>
@@ -120,7 +234,7 @@ export const FeaturesOverview: React.FC<FeaturesOverviewProps> = ({ className })
           style={{ opacity: 1 }}
         >
           <BentoGrid cols={3} gap={6}>
-            {featuresOverview.map((feature, index) => {
+            {items.map((feature, index) => {
               const IconComponent = IconMap[feature.icon as keyof typeof IconMap] || Zap;
 
               // Assign different colSpans for a more dynamic bento look

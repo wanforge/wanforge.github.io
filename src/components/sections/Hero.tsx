@@ -16,6 +16,7 @@ import { ROUTES } from '@/config/paths';
 import { PRESETS, STAGGER } from '@/config/animation';
 import { cn } from '@/utils/cn';
 import { useReducedMotion } from '@/utils/reducedMotion';
+import { type Locale, siteContent } from '@/data/wanforge';
 
 /**
  * Props for the Hero component
@@ -25,6 +26,10 @@ export interface HeroProps {
    * Additional CSS classes to apply
    */
   className?: string;
+  /**
+   * Optional locale for WanForge mode
+   */
+  locale?: Locale;
 }
 
 /**
@@ -39,8 +44,25 @@ export interface HeroProps {
  * - Integrated social proof indicators
  * - Entrance animations for all elements
  */
-export const Hero: React.FC<HeroProps> = ({ className }) => {
+export const Hero: React.FC<HeroProps> = ({ className, locale }) => {
   const { prefersReducedMotion } = useReducedMotion();
+  const isWanforge = locale !== undefined;
+  const content = isWanforge ? siteContent[locale] : null;
+
+  const headline = isWanforge ? (
+    content?.hero.title
+  ) : (
+    <>
+      Build Faster with{' '}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+        {company.name}
+      </span>
+    </>
+  );
+
+  const subheadline = isWanforge
+    ? content?.hero.description
+    : `${company.tagline}. The all-in-one platform for scaling your business with powerful automation tools.`;
 
   return (
     <Section
@@ -99,10 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
               className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-primary mb-6 max-w-[600px] leading-[1.1] text-gradient will-change-transform mx-auto lg:mx-0"
               data-testid="hero-headline"
             >
-              Build Faster with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
-                {company.name}
-              </span>
+              {headline}
             </motion.h1>
 
             {/* Subheadline */}
@@ -113,8 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
               className="text-lg md:text-xl text-text-muted mb-10 max-w-[520px] leading-relaxed will-change-transform mx-auto lg:mx-0"
               data-testid="hero-description"
             >
-              {company.tagline}. The all-in-one platform for scaling your business with powerful
-              automation tools.
+              {subheadline}
             </motion.p>
 
             {/* CTAs */}
@@ -122,28 +140,54 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
               variants={PRESETS.fadeInUp as unknown as Variants}
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start"
             >
-              <Link
-                href={ROUTES.SIGNUP}
-                variant="button"
-                size="lg"
-                className="px-8"
-                data-testid="hero-cta-primary"
-                useDemoModal={false}
-              >
-                Get Started
-                <ArrowRight size={20} className="ml-2" />
-              </Link>
-              <DemoLink href={ROUTES.FEATURES}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="px-8 bg-bg-primary/50 backdrop-blur-sm"
-                  leftIcon={<Play size={18} className="fill-current" />}
-                  data-testid="hero-cta-secondary"
-                >
-                  View Demo
-                </Button>
-              </DemoLink>
+              {isWanforge ? (
+                <>
+                  <a
+                    href={content?.primaryCta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-primary-600 hover:bg-primary-500 rounded-xl shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
+                    data-testid="hero-cta-primary"
+                  >
+                    {content?.primaryCta.label}
+                    <ArrowRight size={20} className="ml-2" />
+                  </a>
+                  <a
+                    href={content?.secondaryCta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-text-primary bg-bg-primary/50 backdrop-blur-sm border border-border-default hover:bg-bg-secondary rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
+                    data-testid="hero-cta-secondary"
+                  >
+                    {content?.secondaryCta.label}
+                  </a>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href={ROUTES.SIGNUP}
+                    variant="button"
+                    size="lg"
+                    className="px-8"
+                    data-testid="hero-cta-primary"
+                    useDemoModal={false}
+                  >
+                    Get Started
+                    <ArrowRight size={20} className="ml-2" />
+                  </Link>
+                  <DemoLink href={ROUTES.FEATURES}>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="px-8 bg-bg-primary/50 backdrop-blur-sm"
+                      leftIcon={<Play size={18} className="fill-current" />}
+                      data-testid="hero-cta-secondary"
+                    >
+                      View Demo
+                    </Button>
+                  </DemoLink>
+                </>
+              )}
             </motion.div>
 
             {/* Secondary Social Proof */}

@@ -6,6 +6,7 @@ import { Section } from '@/components/ui/Section';
 import { howItWorksSteps } from '@/data/how-it-works';
 import { PRESETS, STAGGER } from '@/config/animation';
 import { cn } from '@/utils/cn';
+import { type Locale } from '@/data/wanforge';
 
 /**
  * Map of icon names to Lucide components
@@ -26,6 +27,10 @@ export interface HowItWorksProps {
    * Additional CSS classes to apply
    */
   className?: string;
+  /**
+   * Optional locale for WanForge mode
+   */
+  locale?: Locale;
 }
 
 /**
@@ -38,10 +43,99 @@ export interface HowItWorksProps {
  * - Sequential entrance animations
  * - Theme-aware styling
  */
-export const HowItWorks: React.FC<HowItWorksProps> = ({ className }) => {
+export const HowItWorks: React.FC<HowItWorksProps> = ({ className, locale }) => {
+  const isWanforge = locale !== undefined;
+
+  const heading = isWanforge ? (
+    locale === 'id' ? (
+      <>
+        Alur Kerja Rekayasa yang{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+          Disiplin & Terukur
+        </span>
+      </>
+    ) : (
+      <>
+        Disciplined Engineering{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+          From Concept to Production
+        </span>
+      </>
+    )
+  ) : (
+    <>
+      Get started in{' '}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+        minutes
+      </span>
+    </>
+  );
+
+  const subheading = isWanforge
+    ? locale === 'id'
+      ? 'Dari telaah kebutuhan operasional nyata hingga sistem beroperasi stabil di infrastruktur tim Anda.'
+      : 'From real operational requirements to systems running reliably on your infrastructure.'
+    : "We've designed our process to be as simple as possible. No steep learning curves or complex onboarding—just results.";
+
+  const steps = isWanforge
+    ? locale === 'id'
+      ? [
+          {
+            number: '01',
+            title: 'Analisis & Spesifikasi',
+            description: 'Memahami proses operasional, model data, regulasi, dan batasan teknis secara mendalam.',
+            icon: 'Plug',
+          },
+          {
+            number: '02',
+            title: 'Arsitektur & Prototipe',
+            description: 'Merancang skema database, desain antarmuka responsif, dan purwarupa fungsional.',
+            icon: 'Sparkles',
+          },
+          {
+            number: '03',
+            title: 'Implementasi & Validasi',
+            description: 'Pengembangan terarah dengan pengujian otomatis, linting ketat, dan review performa.',
+            icon: 'Workflow',
+          },
+          {
+            number: '04',
+            title: 'Deployment & SLA',
+            description: 'Rilis produksi nir-downtime, backup terjadwal, dan pemeliharaan operasional berkelanjutan.',
+            icon: 'Rocket',
+          },
+        ]
+      : [
+          {
+            number: '01',
+            title: 'Discovery & Spec',
+            description: 'Deep understanding of real operational flows, data constraints, and technical goals.',
+            icon: 'Plug',
+          },
+          {
+            number: '02',
+            title: 'Architecture & Prototype',
+            description: 'Designing normalized schemas, responsive tactile interfaces, and workable prototypes.',
+            icon: 'Sparkles',
+          },
+          {
+            number: '03',
+            title: 'Execution & Testing',
+            description: 'Disciplined development backed by automated tests, strict linting, and performance checks.',
+            icon: 'Workflow',
+          },
+          {
+            number: '04',
+            title: 'Deployment & SLA',
+            description: 'Zero-downtime static/container release, automated backups, and long-term stability support.',
+            icon: 'Rocket',
+          },
+        ]
+    : howItWorksSteps;
+
   return (
     <Section
-      id="how-it-works"
+      id={isWanforge ? 'capabilities' : 'how-it-works'}
       className={cn('py-20 lg:py-32', className)}
       background="default"
       aria-label="How It Works"
@@ -57,14 +151,10 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ className }) => {
             className="will-change-transform"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary mb-4">
-              Get started in{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
-                minutes
-              </span>
+              {heading}
             </h2>
             <p className="text-lg md:text-xl text-text-muted max-w-[800px] mx-auto leading-relaxed">
-              We've designed our process to be as simple as possible. No steep learning curves or
-              complex onboarding—just results.
+              {subheading}
             </p>
           </motion.div>
         </div>
@@ -92,12 +182,12 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ className }) => {
               } as unknown as Variants
             }
           >
-            {howItWorksSteps.map((step, index) => {
+            {steps.map((step, index) => {
               const IconComponent = IconMap[step.icon as keyof typeof IconMap] || Zap;
 
               return (
                 <motion.div
-                  key={step.id}
+                  key={step.id ?? step.number ?? index}
                   className="relative flex flex-col items-center text-center group"
                   variants={PRESETS.fadeInUp as unknown as Variants}
                 >

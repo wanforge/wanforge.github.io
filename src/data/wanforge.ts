@@ -70,3 +70,55 @@ export const siteContent = {
     footer: 'WANFORGE — Engineering & Product Studio.',
   },
 } as const;
+
+export interface WanforgeFaqItem {
+  question: string;
+  answer: string;
+}
+
+export const wanforgeFaqs: Record<Locale, WanforgeFaqItem[]> = {
+  id: [
+    {
+      question: 'Apa spesialisasi layanan rekayasa WANFORGE?',
+      answer:
+        'WANFORGE berfokus pada pengembangan sistem web operasional (portal resmi perusahaan, SIMRS klinis, koperasi ERP), deployment server Linux & DevOps, serta ekosistem AI tools (MCP servers dan alur kerja otomatis).',
+    },
+    {
+      question: 'Bagaimana model kolaborasi dan kerja sama yang disediakan?',
+      answer:
+        'Kami melayani proyek baru dari tahap analisis arsitektur hingga deployment produksi, audit & perbaikan sistem berjalan, serta perjanjian pemeliharaan operasional (SLA) jangka panjang.',
+    },
+    {
+      question: 'Apakah sistem yang dibangun aman dan menjamin privasi data?',
+      answer:
+        'Ya, seluruh sistem dirancang dengan prinsip least-privilege, perlindungan data terenkripsi, validasi input ketat, serta standar kepatuhan regulasi institusi dan perusahaan.',
+    },
+    {
+      question: 'Bagaimana cara memulai konsultasi kebutuhan sistem?',
+      answer:
+        'Anda dapat menghubungi kami langsung melalui tombol WhatsApp atau email dengan melampirkan tujuan proyek, batasan operasional, dan perkiraan jadwal.',
+    },
+  ],
+  en: [
+    {
+      question: 'What does WANFORGE specialize in?',
+      answer:
+        'WANFORGE specializes in operational web systems (corporate compliance portals, clinical EMRs, cooperative ERPs), Linux server DevOps, and AI tooling ecosystems (custom MCP servers and automation workflows).',
+    },
+    {
+      question: 'What collaboration and engagement models are available?',
+      answer:
+        'We handle greenfield projects from architectural discovery to production release, audits of existing infrastructure, and long-term operational maintenance SLAs.',
+    },
+    {
+      question: 'How do you ensure security and data confidentiality?',
+      answer:
+        'Every system implements least-privilege access controls, encrypted transport and storage, rigorous input sanitization, and enterprise security compliance.',
+    },
+    {
+      question: 'How can we initiate a technical consultation?',
+      answer:
+        'Reach out directly via WhatsApp or email with your system goals, constraints, and target timeline. We will respond with actionable technical next steps.',
+    },
+  ],
+};

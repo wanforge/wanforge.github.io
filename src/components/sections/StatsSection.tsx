@@ -6,6 +6,7 @@ import { Section } from '@/components/ui/Section';
 import { featureStats } from '@/data';
 import { PRESETS } from '@/config/animation';
 import { cn } from '@/utils/cn';
+import { type Locale } from '@/data/wanforge';
 
 /**
  * Props for the StatsSection component
@@ -28,6 +29,10 @@ export interface StatsSectionProps {
    * @default "stats"
    */
   id?: string;
+  /**
+   * Optional locale for WanForge mode
+   */
+  locale?: Locale;
 }
 
 /**
@@ -41,11 +46,97 @@ export interface StatsSectionProps {
  * - Theme-aware design with subtle glassmorphism
  */
 export const StatsSection: React.FC<StatsSectionProps> = ({
-  title = 'By the numbers',
-  subtitle = 'Trusted by thousands of developers and teams worldwide to power their mission-critical applications.',
+  title,
+  subtitle,
   className,
   id = 'stats',
+  locale,
 }) => {
+  const isWanforge = locale !== undefined;
+
+  const displayTitle =
+    title ??
+    (isWanforge
+      ? locale === 'id'
+        ? 'Metrik Keandalan Operasional'
+        : 'Operational Reliability by the Numbers'
+      : 'By the numbers');
+
+  const displaySubtitle =
+    subtitle ??
+    (isWanforge
+      ? locale === 'id'
+        ? 'Kinerja sistem yang terukur untuk mendukung stabilitas dan ketersediaan proses bisnis.'
+        : 'Measurable engineering performance designed for stability and business continuity.'
+      : 'Trusted by thousands of developers and teams worldwide to power their mission-critical applications.');
+
+  const stats = isWanforge
+    ? locale === 'id'
+      ? [
+          {
+            value: 99.99,
+            suffix: '%',
+            label: 'Uptime SLA',
+            prefix: '',
+            desc: 'Ketersediaan layanan cloud dan server produksi.',
+          },
+          {
+            value: 15,
+            suffix: '+',
+            label: 'Sistem Produksi',
+            prefix: '',
+            desc: 'Portal, EMR, dan aplikasi aktif beroperasi.',
+          },
+          {
+            value: 50,
+            suffix: 'ms',
+            label: 'Latensi Respons',
+            prefix: '<',
+            desc: 'Waktu eksekusi query dan render antarmuka.',
+          },
+          {
+            value: 24,
+            suffix: '/7',
+            label: 'Telemetri Aktif',
+            prefix: '',
+            desc: 'Pengawasan daemon dan integritas basis data.',
+          },
+        ]
+      : [
+          {
+            value: 99.99,
+            suffix: '%',
+            label: 'Uptime SLA',
+            prefix: '',
+            desc: 'Production server availability and service uptime.',
+          },
+          {
+            value: 15,
+            suffix: '+',
+            label: 'Active Systems',
+            prefix: '',
+            desc: 'Portals, EMRs, and ERPs deployed in production.',
+          },
+          {
+            value: 50,
+            suffix: 'ms',
+            label: 'Avg Response',
+            prefix: '<',
+            desc: 'Optimized queries and fast edge response times.',
+          },
+          {
+            value: 24,
+            suffix: '/7',
+            label: 'Active Telemetry',
+            prefix: '',
+            desc: 'Automated monitoring of services and database integrity.',
+          },
+        ]
+    : featureStats.map((s) => ({
+        ...s,
+        desc: 'Delivering consistent value and reliability to our global user base.',
+      }));
+
   return (
     <Section
       className={cn('bg-bg-primary', className)}
@@ -66,9 +157,9 @@ export const StatsSection: React.FC<StatsSectionProps> = ({
             id={`${id}-heading`}
             className="mb-4 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl"
           >
-            {title}
+            {displayTitle}
           </h2>
-          <p className="text-lg text-text-secondary">{subtitle}</p>
+          <p className="text-lg text-text-secondary">{displaySubtitle}</p>
         </motion.div>
 
         {/* Stats Grid */}
@@ -79,7 +170,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({
           variants={PRESETS.stagger as unknown as Variants}
           className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 will-change-transform"
         >
-          {featureStats.map((stat, index) => (
+          {stats.map((stat, index) => (
             <motion.div
               key={index}
               variants={PRESETS.fadeInUp as unknown as Variants}
@@ -99,10 +190,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({
                   />
                 </div>
                 <div className="text-lg font-semibold text-text-primary">{stat.label}</div>
-                {/* Add a generic description since featureStats doesn't have one, or just keep it clean */}
-                <p className="mt-2 text-sm text-text-secondary">
-                  Delivering consistent value and reliability to our global user base.
-                </p>
+                <p className="mt-2 text-sm text-text-secondary">{stat.desc}</p>
               </div>
             </motion.div>
           ))}

@@ -9,6 +9,7 @@ import { integrationCategories, integrations } from '@/data/integrations';
 import { PRESETS } from '@/config/animation';
 import { cn } from '@/utils/cn';
 import { ROUTES } from '@/config/paths';
+import { type Locale } from '@/data/wanforge';
 
 /**
  * Props for the IntegrationsSection component
@@ -28,6 +29,10 @@ export interface IntegrationsSectionProps {
    * @default 12
    */
   limit?: number;
+  /**
+   * Optional locale for WanForge mode
+   */
+  locale?: Locale;
 }
 
 /**
@@ -45,8 +50,41 @@ export const IntegrationsSection: React.FC<IntegrationsSectionProps> = ({
   className,
   showFilters = true,
   limit = 12,
+  locale,
 }) => {
   const [activeCategory, setActiveCategory] = React.useState<string>('all');
+  const isWanforge = locale !== undefined;
+
+  const heading = isWanforge ? (
+    locale === 'id' ? (
+      <>
+        Kompatibel dengan{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+          Ekosistem & Stack Anda
+        </span>
+      </>
+    ) : (
+      <>
+        Built for{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+          Your Modern Stack
+        </span>
+      </>
+    )
+  ) : (
+    <>
+      Works with{' '}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+        your stack
+      </span>
+    </>
+  );
+
+  const subheading = isWanforge
+    ? locale === 'id'
+      ? 'WANFORGE terintegrasi mulus dengan database, platform cloud, runtime modern, dan AI tooling terkemuka.'
+      : 'WANFORGE integrates seamlessly with modern databases, cloud platforms, and developer tooling.'
+    : 'ModernSaaS seamlessly integrates with the tools you already use. Connect your workflow and automate your processes in minutes.';
 
   // Filter function for integrations
   const getFilteredIntegrations = (category: string) => {
@@ -75,14 +113,10 @@ export const IntegrationsSection: React.FC<IntegrationsSectionProps> = ({
             className="will-change-transform"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary mb-4">
-              Works with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
-                your stack
-              </span>
+              {heading}
             </h2>
             <p className="text-lg md:text-xl text-text-muted max-w-[800px] mx-auto leading-relaxed">
-              ModernSaaS seamlessly integrates with the tools you already use. Connect your workflow
-              and automate your processes in minutes.
+              {subheading}
             </p>
           </motion.div>
         </div>
