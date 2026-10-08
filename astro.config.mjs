@@ -3,29 +3,6 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
-/**
- * Determines the base path for deployment
- * - GitHub Project Pages: /repository-name/
- * - GitHub User/Org Pages: /
- * - Custom Domain: /
- */
-const getBasePath = () => {
-  // GitHub Actions sets this for project pages
-  if (process.env.GITHUB_PAGES === 'true') {
-    const repo = process.env.GITHUB_REPOSITORY;
-    if (repo) {
-      const [, repoName] = repo.split('/');
-      return repoName ? `/${repoName}` : '/';
-    }
-  }
-  // Local development or user/org pages
-  const basePath = process.env.BASE_PATH || '/';
-  // Fix Windows path expansion
-  return basePath.includes(':\\') || basePath.includes(':/')
-    ? '/' + basePath.split(/[\\/]/).pop()
-    : basePath;
-};
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -38,8 +15,8 @@ export default defineConfig({
       },
     }),
   ],
-  site: process.env.SITE_URL || 'https://example.com',
-  base: getBasePath(),
+  site: process.env.SITE_URL || 'https://wanforge.asia',
+  base: '/',
   output: 'static',
   trailingSlash: 'always',
   compressHTML: true,

@@ -125,6 +125,13 @@
    2. SEMANTIC TOKENS - Light Mode (Default)
    ------------------------------------------ */
 :root {
+  /* WanForge Brand Tokens */
+  --color-ink: #06142E;
+  --color-action: #B91C1C;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F8FAFC;
+  --color-text: #0F172A;
+
   /* Background Colors */
   --token-bg-primary: var(--primitive-color-gray-50);
   --token-bg-secondary: var(--primitive-color-gray-100);
