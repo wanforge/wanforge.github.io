@@ -74,7 +74,7 @@ export const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
         padding={padding}
         radius={radius}
         hover={hover}
-        className={cn('flex flex-col h-full group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl', className)}
+        className={cn('flex flex-col h-full group transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-xl', className)}
         {...props}
       >
         {/* Icon Container */}

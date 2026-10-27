@@ -1,0 +1,40 @@
+name: Validate Skill
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate SKILL.md Frontmatter & Schema
+        run: |
+          python -c "
+          import re, sys
+
+          with open('SKILL.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+
+          # 1. Frontmatter check
+          assert content.startswith('---'), 'SKILL.md must start with YAML frontmatter'
+          match = re.match(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
+          assert match, 'Failed to parse YAML frontmatter'
+          fm = match.group(1)
+
+          # 2. Required fields
+          assert re.search(r'^name:\s*\S+', fm, re.M), 'Missing name in frontmatter'
+          assert re.search(r'^description:\s*\S+', fm, re.M), 'Missing description in frontmatter'
+
+          print('✓ YAML Frontmatter is valid!')
+          print('✓ SKILL.md passed validation checks!')
+          "

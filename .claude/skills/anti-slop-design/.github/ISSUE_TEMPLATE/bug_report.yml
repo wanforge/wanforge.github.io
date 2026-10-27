@@ -1,0 +1,27 @@
+name: Bug Report
+description: Report a bug, rendering issue, or hallucination in the skill instructions
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve anti-slop-design!
+  - type: input
+    id: environment
+    attributes:
+      label: AI Agent / Runtime
+      description: What tool were you using? (e.g., Claude Code, Antigravity, Cursor, Windsurf)
+      placeholder: e.g. Claude Code v1.2 / Cursor
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe what the agent produced and why it did not follow anti-slop principles.
+    validations:
+      required: true
+  - type: textarea
+    id: code_sample
+    attributes:
+      label: Code Snippet (Before / After)
+      description: Paste the generated code that triggered this report.

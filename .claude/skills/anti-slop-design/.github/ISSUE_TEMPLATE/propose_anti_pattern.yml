@@ -1,0 +1,26 @@
+name: Propose New Anti-Pattern
+description: Suggest a new AI design cliché or slop trope to ban and cure
+labels: ["anti-pattern", "enhancement"]
+body:
+  - type: input
+    id: pattern_name
+    attributes:
+      label: Anti-Pattern Name
+      placeholder: e.g. The Floating Glassmorphic Pill
+    validations:
+      required: true
+  - type: textarea
+    id: manifestation
+    attributes:
+      label: How AI Models Generate It
+      description: What CSS / Tailwind classes or DOM structures does the AI spit out?
+      placeholder: e.g. backdrop-blur-md bg-white/10 border border-white/20 with low contrast...
+    validations:
+      required: true
+  - type: textarea
+    id: cure
+    attributes:
+      label: Mandatory Production Replacement
+      description: How should a human senior design technologist engineer this instead?
+    validations:
+      required: true

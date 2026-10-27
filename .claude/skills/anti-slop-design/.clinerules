@@ -1,0 +1,9 @@
+# Cline & Roo Code: Anti-Slop Design Instructions
+
+When designing or modifying user interfaces:
+1. Apply the anti-slop rules from `SKILL.md`.
+2. Eliminate generic AI styling tropes: no purple glow blobs, no emojis as icons, no vanity stats.
+3. Adhere to the 8-pt spatial grid and nested radius math: R_inner = R_outer - Padding.
+4. Enforce the 1-to-3 UX hierarchy and page-level controls.
+5. Provide 8-state interactive feedback with snappy ease-out transitions (<200ms).
+6. Verify WCAG 2.1 AA keyboard focus and contrast before finishing.

@@ -154,8 +154,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Combine all classes using cn
     const classes = cn(
-      'inline-flex items-center justify-center font-medium shrink-0',
-      'transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2',
+      'inline-flex items-center justify-center font-medium shrink-0 active:scale-[0.98]',
+      'transition-[color,background-color,border-color,box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2',
       'focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary',
       'disabled:pointer-events-none disabled:opacity-50 cursor-pointer overflow-hidden relative',
       variantStyles[variant],

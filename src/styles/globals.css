@@ -686,6 +686,9 @@ section > div > div {
   h1, h2, h3, h4 {
     text-wrap: balance;
   }
+  :where(a, button, input, select, textarea, [role='button']) {
+    touch-action: manipulation;
+  }
   p {
     text-wrap: pretty;
   }

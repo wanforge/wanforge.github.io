@@ -175,6 +175,7 @@ export const ContactForm: React.FC = () => {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Input
           label="Full Name"
+          autoComplete="name"
           name="name"
           placeholder="John Doe"
           value={formData.name}
@@ -186,6 +187,8 @@ export const ContactForm: React.FC = () => {
         />
         <Input
           label="Email Address"
+          autoComplete="email"
+          spellCheck={false}
           name="email"
           type="email"
           placeholder="john@example.com"
@@ -201,6 +204,7 @@ export const ContactForm: React.FC = () => {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Input
           label="Company (Optional)"
+          autoComplete="organization"
           name="company"
           placeholder="Acme Inc."
           value={formData.company}

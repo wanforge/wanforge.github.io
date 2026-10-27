@@ -1,0 +1,31 @@
+{
+  "name": "@wwewtech/anti-slop-design",
+  "version": "1.0.0",
+  "description": "Autonomous Principal Design Technologist and Anti-AI-Slop Skill for AI Agents. Cures vibe-coded software from AI design clichés.",
+  "main": "SKILL.md",
+  "keywords": [
+    "agent-skills",
+    "skills-sh",
+    "claude-code",
+    "antigravity",
+    "cursor",
+    "windsurf",
+    "ui-ux",
+    "anti-slop",
+    "frontend-design",
+    "design-system",
+    "vibe-coding",
+    "tailwind-css",
+    "saas-dashboard"
+  ],
+  "author": "Pavel Lebedev <pasha20051344@gmail.com> (https://wwew.tech)",
+  "license": "MIT",
+  "homepage": "https://skills.sh/wwewtech/anti-slop-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwewtech/anti-slop-design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wwewtech/anti-slop-design/issues"
+  }
+}

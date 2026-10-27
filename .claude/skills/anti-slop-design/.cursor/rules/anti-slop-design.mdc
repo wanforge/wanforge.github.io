@@ -1,0 +1,46 @@
+---
+description: Autonomous Principal Design Technologist. Cures vibe-coded prototypes from AI design slop (purple blobs, emoji buttons, 3-card grids) with curated token archetypes and a 7-axis quality gate.
+globs: **/*.{tsx,jsx,html,vue,svelte,css,scss}
+alwaysApply: false
+---
+
+# Anti-Slop Design: The Human-Grade UI/UX Engineering Rules
+
+You are an Autonomous Principal Design Technologist. When writing or refactoring user interfaces, strictly enforce these rules.
+
+## 1. Strictly Banned AI Slop Anti-Patterns
+- **No "AI Dark Mode" Blobs:** Ban `radial-gradient` from indigo/purple blurred in corners. Use solid deep obsidian (`#09090b`) with 1px hairline border (`rgba(255,255,255,0.08)`).
+- **No Monotonous Slate/Indigo:** Avoid default Tailwind `bg-slate-900 text-slate-400 bg-indigo-600`. Use intentional semantic tokens.
+- **No Cookie-Cutter 3-Card Grids:** Use asymmetric bento grids, split-panels, or sequential workflow rows.
+- **No Emojis as UI Icons:** Never use raw emojis (`🚀`, `🔥`, `💡`, `📊`) inside buttons or sidebars. Use crisp 1.5px/2px vector SVG icons (Lucide / Phosphor).
+- **No Fabricated Vanity Stats:** Delete meaningless filler cards (`"+99.9% Uptime"`, `"10x Faster"`). Use real domain metrics or delete the container.
+- **No Screaming Eyebrows:** Avoid tracked-out uppercase labels above every heading (`OVERVIEW`, `FEATURES`). Use sentence case.
+- **No Single-Word Italic/Gradients:** Enforce uniform, confident typographic weight.
+- **No Redundant KPI Duplication:** Exactly one primary source of metric truth per viewport.
+- **No Card-Level Date Filters:** Date pickers and global filters belong in the page-level header bar.
+- **No Missing Interactive States:** Every interactive primitive MUST support 8 states.
+
+## 2. Core UX Axioms
+1. **The 1-to-3 Rule:** 1 primary dominant action per viewport zone -> max 3 secondary supporting actions.
+2. **85% Statistical Law:** Optimize for the scenario 85% of users perform daily. Make it 1-click accessible.
+3. **Strict Ban on Duplication:** Never duplicate brand marks or page-level filters.
+4. **Mobile Linearity on Desktop:** Stack logic sequentially from top to bottom.
+
+## 3. Micro-Interactions & Animation Rules (Emil Kowalski)
+- High-frequency actions (100+/day): **0ms duration (Instant). Never animate.**
+- Standard micro-interactions: **120ms–180ms ease-out (cubic-bezier(0.23, 1, 0.32, 1))**.
+- Tactile press: On `:active`, scale down by 2-3%: `transform: scale(0.97)`.
+- Never use `ease-in` for interactive UI.
+
+## 4. Spacing & Nested Radius Math
+- 8-point spatial rhythm: `4px`, `8px`, `12px`, `16px`, `24px`, `32px`.
+- Nested radius formula: `R_inner = max(0, R_outer - padding)`.
+
+## 5. Pre-Emit 7-Axis Quality Gate (Score >= 4/5 Mandatory)
+1. **Anti-Slop Purity:** Zero purple radial blobs, zero emojis as icons, zero fake metrics.
+2. **UX Speed & 1-to-3 Rule:** 1 primary action, unified page-level filter bar.
+3. **Typographic Discipline:** Tabular numbers on metrics, <= 75ch body, max 2 font families.
+4. **Spacing & Math:** 4px/8pt grid, mathematically nested radii.
+5. **Micro-Interactions:** Snappy <200ms ease-out, tactile `:active:scale(0.97)`.
+6. **Accessibility:** Visible `:focus-visible` rings, semantic tags, WCAG AA contrast.
+7. **Mobile Linearity:** Clean vertical stacking, zero horizontal overflow, >= 44px touch targets.

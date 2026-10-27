@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .mono { font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace; }
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+      .title { font-weight: 700; font-size: 28px; letter-spacing: -0.03em; fill: #ededed; }
+      .sub { font-size: 14px; fill: #888888; }
+      .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      .code { font-size: 13px; line-height: 1.6; }
+      .red { fill: #f87171; }
+      .green { fill: #34d399; }
+      .dim { fill: #52525b; }
+      .text-light { fill: #e4e4e7; }
+    </style>
+  </defs>
+
+  <!-- Deep Obsidian Solid Canvas -->
+  <rect width="1200" height="480" fill="#000000"/>
+
+  <!-- Outer Frame -->
+  <rect x="20" y="20" width="1160" height="440" rx="8" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Header Bar -->
+  <line x1="20" y1="76" x2="1180" y2="76" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Left Header: Project Identity -->
+  <g transform="translate(44, 48)">
+    <rect x="0" y="-14" width="22" height="22" rx="4" fill="#ffffff"/>
+    <path d="M 5 -3 L 17 9 M 5 9 L 17 -3" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="32" y="3" class="mono text-light" font-size="14" font-weight="600">anti-slop-design</text>
+    <text x="175" y="3" class="mono dim" font-size="14">/ v1.0.0</text>
+  </g>
+
+  <!-- Right Header: Status Telemetry -->
+  <g transform="translate(1156, 48)">
+    <text x="0" y="2" text-anchor="end" class="mono label dim">STATUS: <tspan fill="#34d399">AUTONOMOUS AUDIT ACTIVE</tspan></text>
+  </g>
+
+  <!-- Split View Dividers -->
+  <line x1="600" y1="76" x2="600" y2="416" stroke="#27272a" stroke-width="1"/>
+  <line x1="20" y1="416" x2="1180" y2="416" stroke="#27272a" stroke-width="1"/>
+
+  <!-- LEFT PANE: Vibe-Coded Anti-Patterns (Eliminated) -->
+  <g transform="translate(44, 108)">
+    <text x="0" y="0" class="mono label red">INPUT: VIBE-CODED AI SLOP (REJECTED)</text>
+    
+    <g transform="translate(0, 32)" class="mono code">
+      <text y="0" class="dim">01 <tspan class="red">&lt;div className=&quot;min-h-screen bg-slate-900</tspan></text>
+      <text y="24" class="dim">02 <tspan class="red">  bg-[radial-gradient(ellipse_at_top,_#312e81,_#0f172a)]</tspan></text>
+      <text y="48" class="dim">03 <tspan class="red">  flex flex-col items-center justify-center p-8&quot;&gt;</tspan></text>
+      <text y="72" class="dim">04 <tspan class="red">  &lt;span className=&quot;tracking-widest uppercase&quot;&gt;DASHBOARD&lt;/span&gt;</tspan></text>
+      <text y="96" class="dim">05 <tspan class="red">  &lt;h1&gt;Live &lt;em className=&quot;text-gradient&quot;&gt;Radar&lt;/em&gt;&lt;/h1&gt;</tspan></text>
+      <text y="120" class="dim">06 <tspan class="red">  &lt;div className=&quot;grid grid-cols-3 gap-6&quot;&gt;</tspan></text>
+      <text y="144" class="dim">07 <tspan class="red">    &lt;Card&gt;&lt;Emoji&gt;🚀&lt;/Emoji&gt;&lt;Val&gt;+99.9% Faster&lt;/Val&gt;&lt;/Card&gt;</tspan></text>
+      <text y="168" class="dim">08 <tspan class="red">    &lt;Card&gt;&lt;Emoji&gt;🔥&lt;/Emoji&gt;&lt;Val&gt;50k+ Active&lt;/Val&gt;&lt;/Card&gt;</tspan></text>
+      <text y="192" class="dim">09 <tspan class="red">  &lt;/div&gt;</tspan></text>
+      <text y="216" class="dim">10 <tspan class="red">&lt;/div&gt;</tspan></text>
+    </g>
+
+    <rect x="-8" y="272" width="536" height="26" rx="4" fill="#181111" stroke="#3b1c1c" stroke-width="1"/>
+    <text x="8" y="289" class="mono" font-size="11" fill="#f87171">✕ DETECTED: Purple blob · 3-card grid · Emojis as icons · Fake metrics</text>
+  </g>
+
+  <!-- RIGHT PANE: Human-Grade Production Output -->
+  <g transform="translate(624, 108)">
+    <text x="0" y="0" class="mono label green">OUTPUT: HUMAN-GRADE REFACTOR (SHIPPED)</text>
+    
+    <g transform="translate(0, 32)" class="mono code">
+      <text y="0" class="dim">01 <tspan class="green">&lt;main className=&quot;min-h-screen bg-[#09090b] text-zinc-100 p-8&quot;&gt;</tspan></text>
+      <text y="24" class="dim">02 <tspan class="green">  &lt;header className=&quot;flex items-center justify-between pb-4</tspan></text>
+      <text y="48" class="dim">03 <tspan class="green">    border-b border-white/10&quot;&gt;</tspan></text>
+      <text y="72" class="dim">04 <tspan class="green">    &lt;h1 className=&quot;text-base font-semibold&quot;&gt;Link Telemetry&lt;/h1&gt;</tspan></text>
+      <text y="96" class="dim">05 <tspan class="green">    &lt;UnifiedControlBar dateRange=&quot;30d&quot; onFilter={sync} /&gt;</tspan></text>
+      <text y="120" class="dim">06 <tspan class="green">  &lt;/header&gt;</tspan></text>
+      <text y="144" class="dim">07 <tspan class="green">  &lt;TelemetrySummary singleSource={true} sparkline={true} /&gt;</tspan></text>
+      <text y="168" class="dim">08 <tspan class="green">  &lt;InteractiveTable activeScale={0.97} focusRing={true} /&gt;</tspan></text>
+      <text y="192" class="dim">09 <tspan class="green">&lt;/main&gt;</tspan></text>
+    </g>
+
+    <rect x="-8" y="272" width="536" height="26" rx="4" fill="#0f1914" stroke="#163824" stroke-width="1"/>
+    <text x="8" y="289" class="mono" font-size="11" fill="#34d399">✓ PASSED: 7-Axis Quality Gate (35/35) · Zero decoration ballast</text>
+  </g>
+
+  <!-- Bottom Bar: Command Footer -->
+  <g transform="translate(44, 442)">
+    <text x="0" y="0" class="mono dim" font-size="12">INSTALL: <tspan fill="#e4e4e7">npx skills add wwewtech/anti-slop-design</tspan></text>
+    <text x="1112" y="0" text-anchor="end" class="mono dim" font-size="12">COMPATIBLE: CLAUDE CODE · CURSOR · ANTIGRAVITY · WINDSURF</text>
+  </g>
+</svg>

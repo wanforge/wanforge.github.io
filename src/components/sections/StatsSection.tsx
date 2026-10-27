@@ -186,7 +186,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({
                     prefix={stat.prefix}
                     suffix={stat.suffix}
                     decimals={stat.value % 1 !== 0 ? 2 : 0}
-                    className="text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl"
+                    className="text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl tabular-nums"
                   />
                 </div>
                 <div className="text-lg font-semibold text-text-primary">{stat.label}</div>

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Anti-AI-Slop & Design Systems",
+      "description": "Autonomous Principal Design Technologist for curing vibe-coded software, enforcing 1-to-3 UX hierarchy, and 7-axis quality gating.",
+      "skills": [
+        "anti-slop-design"
+      ]
+    }
+  ]
+}

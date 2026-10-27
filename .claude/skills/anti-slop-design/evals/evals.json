@@ -1,0 +1,27 @@
+{
+  "skill_name": "anti-slop-design",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "de_slop_saas_dashboard",
+      "prompt": "I vibe-coded this analytics dashboard for my URL shortener using Cursor. It has 4 cards at the top, each with its own date picker and total clicks counter. There are fire and rocket emojis on every button, a huge 3D world map in the middle that takes up half the page, and the whole background is a dark purple radial gradient. Make it look like professional, production-ready software.",
+      "expected_output": "Agent activates anti-slop-design, strips all emojis, eliminates the purple gradient for clean obsidian surface, unifies date picker to a single page-level control bar, removes redundant click counters across cards, replaces the vanity map with a compact horizontal bar chart with tabular deltas, applies 8-pt spacing, and runs the 7-axis quality gate.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "landing_page_50ms_hero",
+      "prompt": "Review my landing page hero section. Right now it has a 140px headline split across 4 lines with 'Revolutionary AI' in italic purple glow, 3 equal primary buttons ('Get Started', 'Learn More', 'Book Demo'), and a 15MB MOV video preloader before anything renders. Optimize it for commercial conversion.",
+      "expected_output": "Agent eliminates the heavy MOV preloader, simplifies the headline to a crisp 44px offer, reduces CTA buttons to exactly 1 primary action and 1 subtle secondary link (following the 1-to-3 rule), removes single-word italic glow, ensures the page renders within 50ms, and validates against the 7-axis rubric.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "accessible_component_8_states",
+      "prompt": "Write the CSS and component markup for our primary action button and input field. Currently they only have hover states with transition-all 400ms ease-in, and use outline: none on focus.",
+      "expected_output": "Agent implements full 8-state coverage (default, hover, focus-visible with clear ring, active with transform: scale(0.97), disabled, loading, error, success), replaces sluggish ease-in with 140ms ease-out cubic-bezier(0.23, 1, 0.32, 1), enforces WCAG 2.1 AA keyboard focus without outline-none bugs.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# Windsurf Cascade Rules: Anti-Slop Design
+
+Trigger this workflow whenever generating or refactoring UI components or styling:
+- Follow `SKILL.md` rules.
+- Strictly eliminate AI slop: no purple dark mode radial gradients, no duplicate KPIs, no raw emojis in buttons.
+- Follow the 1-to-3 UX rule and 85% statistical prioritization.
+- Implement 8-state interactive feedback with tactile active press (`scale(0.97)`).
+- Complete the 7-Axis Quality Gate before declaring completion.

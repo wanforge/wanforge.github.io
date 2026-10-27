@@ -1,0 +1,18 @@
+# Environment & system
+.DS_Store
+Thumbs.db
+*.log
+__pycache__/
+*.pyc
+
+# Local download cache & scratch scripts
+downloaded_skills/
+site.html
+parse_*.py
+setup_downloader.py
+download_all_skills.py
+analyze_skills.py
+corpus_analysis.json
+
+# Raw research notes folder (kept locally)
+мои скиллы нужно в один md/

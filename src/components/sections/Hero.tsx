@@ -9,8 +9,6 @@ import { GradientBackground } from '@/components/ui/GradientBackground';
 import { ProductMockup } from '@/components/ui/ProductMockup';
 import { Section } from '@/components/ui/Section';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { SocialProofBadge } from '@/components/ui/SocialProofBadge';
-import { socialProofStats, testimonials } from '@/data';
 import { company } from '@/config/site';
 import { ROUTES } from '@/config/paths';
 import { PRESETS, STAGGER } from '@/config/animation';
@@ -103,16 +101,6 @@ export const Hero: React.FC<HeroProps> = ({ className, locale }) => {
             }
             className="flex flex-col items-center text-center lg:items-start lg:text-left"
           >
-            {/* Social Proof Badge */}
-            <SocialProofBadge
-              className="mb-6"
-              variant="rated"
-              rating={socialProofStats.rating}
-              count={socialProofStats.users}
-              avatars={testimonials.slice(0, 3).map((t) => t.author.avatar || '')}
-              variants={PRESETS.fadeInUp as unknown as Variants}
-            />
-
             {/* Headline */}
             <motion.h1
               initial={false}

@@ -1,0 +1,24 @@
+{
+  "name": "anti-slop-design",
+  "displayName": "Anti-Slop Design",
+  "version": "1.0.0",
+  "description": "Autonomous Principal Design Technologist and Anti-AI-Slop Skill for AI Agents. Transforms messy, generic, vibe-coded prototypes into bespoke, human-grade, production-ready software.",
+  "author": "wwewtech (Pavel Lebedev)",
+  "repository": "https://github.com/wwewtech/anti-slop-design",
+  "homepage": "https://skills.sh/wwewtech/anti-slop-design",
+  "license": "MIT",
+  "tags": [
+    "design",
+    "ui-ux",
+    "frontend",
+    "anti-slop",
+    "agent-skills",
+    "claude-code",
+    "cursor",
+    "antigravity",
+    "tailwind"
+  ],
+  "skill": {
+    "entrypoint": "SKILL.md"
+  }
+}
