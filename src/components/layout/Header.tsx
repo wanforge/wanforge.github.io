@@ -226,11 +226,12 @@ export function Header({
 
               {/* CTA Button - Desktop */}
               {showCta && (
+                <span className="hidden md:inline-flex">
                 <Link
                   href={resolvedCtaHref}
                   variant="button"
                   size="md"
-                  className="hidden md:inline-flex"
+                  className="whitespace-nowrap"
                   useDemoModal={false}
                   onClick={(e) => {
                     if (onCtaClick) {
@@ -241,6 +242,7 @@ export function Header({
                 >
                   {resolvedCtaText}
                 </Link>
+                </span>
               )}
 
               {/* Mobile Menu Button */}

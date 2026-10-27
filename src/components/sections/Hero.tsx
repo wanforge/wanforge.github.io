@@ -190,41 +190,6 @@ export const Hero: React.FC<HeroProps> = ({ className, locale }) => {
               )}
             </motion.div>
 
-            {/* Secondary Social Proof */}
-            <motion.div
-              variants={PRESETS.fadeInUp as unknown as Variants}
-              className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
-            >
-              <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-                Featured In
-              </div>
-              <div className="flex gap-6 items-center opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300">
-                <img
-                  src="/images/publications/techcrunch.svg"
-                  alt="TechCrunch"
-                  className="h-6 w-auto dark:invert"
-                  loading="eager"
-                  decoding="sync"
-                  fetchPriority="low"
-                />
-                <img
-                  src="/images/publications/forbes.svg"
-                  alt="Forbes"
-                  className="h-5 w-auto dark:invert"
-                  loading="eager"
-                  decoding="sync"
-                  fetchPriority="low"
-                />
-                <img
-                  src="/images/publications/producthunt.svg"
-                  alt="Product Hunt"
-                  className="h-6 w-auto dark:invert"
-                  loading="eager"
-                  decoding="sync"
-                  fetchPriority="low"
-                />
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Visual Column - Product Mockup */}
@@ -264,15 +229,15 @@ export const Hero: React.FC<HeroProps> = ({ className, locale }) => {
                     }
               }
               style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
-              className="absolute -bottom-6 -right-6 w-32 h-32 bg-bg-primary border border-border-default rounded-xl shadow-xl z-20 flex items-center justify-center p-4 hidden md:flex"
+              className="absolute -bottom-6 -right-6 w-36 h-32 bg-bg-primary border border-border-default rounded-xl shadow-xl z-20 flex items-center justify-center p-4 hidden md:flex"
             >
-              <div className="space-y-2 w-full">
-                <div className="flex justify-between">
-                  <Skeleton className="h-3 w-1/2 rounded" />
-                  <div className="h-3 w-3 rounded-full bg-success-500" />
+              <div className="w-full">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[11px] font-bold tracking-wide text-text-primary">SIMRS</span>
+                  <span className="h-2.5 w-2.5 rounded-full bg-success-500" />
                 </div>
-                <Skeleton className="h-2 w-full rounded" />
-                <Skeleton className="h-2 w-3/4 rounded" />
+                <p className="text-[10px] leading-snug text-text-muted">Semua sistem operasional</p>
+                <p className="text-[10px] font-semibold text-success-600 mt-1">Uptime 99,9%</p>
               </div>
             </motion.div>
           </div>

@@ -666,3 +666,40 @@ section > div > div {
     display: none;
   }
 }
+
+/* ============================================
+   UI/UX Polish Layer (ui-ux-pro-max)
+   ============================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--primitive-color-primary-600);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primitive-color-primary-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

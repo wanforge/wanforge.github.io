@@ -165,7 +165,7 @@ export interface FeatureFlagsConfig {
  * Update these values to customize the template for your product
  */
 export const company: CompanyConfig = {
-  name: 'ModernSaaS',
+  name: 'WANFORGE',
   tagline: 'Build faster with intelligent automation',
   shortDescription:
     'ModernSaaS helps teams streamline workflows, automate repetitive tasks, and ship products faster with AI-powered tools.',
@@ -190,8 +190,8 @@ export const company: CompanyConfig = {
 export const social: SocialLinksConfig = {
   twitter: 'modernsaas',
   twitterUrl: 'https://twitter.com/modernsaas',
-  github: 'modernsaas',
-  githubUrl: 'https://github.com/modernsaas',
+  github: 'wanforge',
+  githubUrl: 'https://github.com/wanforge',
   linkedinUrl: 'https://linkedin.com/company/modernsaas',
   discordUrl: 'https://discord.gg/modernsaas',
   youtubeUrl: 'https://youtube.com/@modernsaas',

@@ -113,8 +113,8 @@ export const PricingTiers: React.FC<PricingTiersProps> = ({ className, billingPe
           className="mt-12 text-center text-sm text-text-muted max-w-2xl mx-auto will-change-transform"
           style={{ opacity: 1 }}
         >
-          Prices are shown in USD. Annual billing saves you up to 20% on Pro and Starter plans. All
-          plans include a 14-day free trial. No credit card required to start.
+          Prices are shown in USD. Annual billing saves you up to 20% on Pro and Starter plans.
+          Contact us to discuss the scope that fits your team.
         </motion.p>
       </Container>
     </Section>

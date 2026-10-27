@@ -111,7 +111,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({
 
           <FadeInUp>
             <p className="mt-8 text-sm text-text-muted">
-              No credit card required. 14-day free trial on all Pro features.
+              Ceritakan kebutuhan Anda — tanpa komitmen, kami bantu petakan solusi yang tepat.
             </p>
           </FadeInUp>
         </StaggerContainer>

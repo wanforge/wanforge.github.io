@@ -33,23 +33,23 @@ import { wanforgeFaqs } from '../../data/wanforge';
   <Hero client:load transition:persist locale="en" />
 
   {/* 2. Logo Cloud Section */}
-  <LogoCloudSection client:load transition:persist title="Trusted Engineering Technologies" />
+  <LogoCloudSection client:visible transition:persist title="Trusted Engineering Technologies" />
 
   {/* 3. Features Overview Section */}
-  <FeaturesOverview client:load transition:persist locale="en" />
+  <FeaturesOverview client:visible transition:persist locale="en" />
 
   {/* 4. How It Works Section */}
-  <HowItWorks client:load transition:persist locale="en" />
+  <HowItWorks client:visible transition:persist locale="en" />
 
   {/* 5. Statistics Section */}
-  <StatsSection client:load transition:persist locale="en" />
+  <StatsSection client:visible transition:persist locale="en" />
 
   {/* 6. Integrations Section */}
-  <IntegrationsSection client:load transition:persist locale="en" />
+  <IntegrationsSection client:visible transition:persist locale="en" />
 
   {/* 7. Testimonials Section */}
   <TestimonialsSection
-    client:load
+    client:visible
     transition:persist
     title="Field Validations & Trust"
     subtitle="Real-world system deployment across clinical EMRs, cooperative ERPs, and corporate portals."
@@ -57,7 +57,7 @@ import { wanforgeFaqs } from '../../data/wanforge';
 
   {/* 8. Pricing Preview Section */}
   <PricingPreview
-    client:load
+    client:visible
     transition:persist
     heading="Engineering Collaboration Models"
     subheading="Clear, transparent engagements tailored to your operational scale and technical specifications."
@@ -66,7 +66,7 @@ import { wanforgeFaqs } from '../../data/wanforge';
 
   {/* 9. FAQ Section */}
   <FAQSection
-    client:load
+    client:visible
     transition:persist
     heading="Frequently Asked Questions"
     subheading="Key insights into WANFORGE engineering workflows, data confidentiality, and system operations."
@@ -75,7 +75,7 @@ import { wanforgeFaqs } from '../../data/wanforge';
 
   {/* 10. Final CTA Section */}
   <FinalCTA
-    client:load
+    client:visible
     transition:persist
     title="Ready to Engineer Reliable Systems?"
     description="Discuss your operational requirements. We engineer, automate, and deploy systems that work."

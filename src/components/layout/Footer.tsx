@@ -54,7 +54,7 @@ function FooterLink({ href, children, external }: FooterLinkProps) {
     <Link
       href={href}
       variant="subtle"
-      className="text-text-secondary hover:text-text-primary text-sm"
+      className="inline-block py-1 text-text-secondary hover:text-text-primary text-sm"
       showExternalIcon={false}
       openExternalInNewTab={!!external}
     >
@@ -180,7 +180,7 @@ export function Footer({ className = '', showNewsletter = true, locale }: Footer
         aria-label="Site footer"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
             <div className="md:col-span-2">
               <a
                 href={isId ? '/' : '/en/'}
@@ -227,6 +227,29 @@ export function Footer({ className = '', showNewsletter = true, locale }: Footer
                 <li>
                   <FooterLink href={content.primaryCta.href} external>
                     WhatsApp
+                  </FooterLink>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-text-primary mb-4 text-sm">
+                {isId ? 'Hubungi Kami' : 'Get in Touch'}
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <FooterLink href={content.primaryCta.href} external>
+                    WhatsApp
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={content.secondaryCta.href} external>
+                    GitHub
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={isId ? '/contact' : '/en/contact'}>
+                    {isId ? 'Formulir Kontak' : 'Contact Form'}
                   </FooterLink>
                 </li>
               </ul>
